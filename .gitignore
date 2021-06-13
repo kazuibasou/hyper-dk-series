@@ -34,6 +34,5 @@
 .DS_Store
 ./bin/.DS_Store
 ./data/.DS_Store
-./data/dataset/.DS_Store
 ./src/.DS_Store
 
