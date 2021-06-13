@@ -61,7 +61,7 @@ int BipartiteGraph::read_hypergraph(const char *readgraph){
 		exit(0);
 	}
 
-	const char *dir = "../data/dataset/";
+	const char *dir = "../data/";
 
 	FILE *gf;
 	std::string gfpath = std::string(dir) + "hypergraphdata.txt";
