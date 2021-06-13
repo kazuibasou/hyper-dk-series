@@ -17,7 +17,7 @@ bipartite_rewiring.o: ./bipartite_rewiring.cpp ./basic_function.h ./bipartite_gr
 	$(CXX) $(CXXFLAGS) -c ./bipartite_rewiring.cpp -O3
 
 mkdir:
-	mkdir -p ../data/result
+	mkdir -p ../result
 
 clean:
 	rm *.o
