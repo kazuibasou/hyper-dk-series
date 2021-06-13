@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -Wextra -O3
 
-main: hyper_dk_series clean
+main: hyper_dk_series mkdir clean
 
 hyper_dk_series: basic_function.o bipartite_graph.o bipartite_generator.o bipartite_rewiring.o hyper_dk_series.o
 	$(CXX) $(CXXFLAGS) -o ../bin/hyper_dk_series basic_function.o bipartite_graph.o bipartite_generator.o bipartite_rewiring.o hyper_dk_series.o -O3
@@ -15,6 +15,9 @@ bipartite_generator.o: ./bipartite_generator.cpp ./bipartite_generator.h ./basic
 	$(CXX) $(CXXFLAGS) -c ./bipartite_generator.cpp -O3
 bipartite_rewiring.o: ./bipartite_rewiring.cpp ./basic_function.h ./bipartite_graph.h ./bipartite_rewiring.h
 	$(CXX) $(CXXFLAGS) -c ./bipartite_rewiring.cpp -O3
+
+mkdir:
+	mkdir -p ../data/result
 
 clean:
 	rm *.o
