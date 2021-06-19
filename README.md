@@ -23,17 +23,17 @@ The structure of the directory will be as follows:
 ## Usage
 Execute the following command at  `hyper-dk-series/bin`.
 
-	./hyper_dk_series <hypergraph_name> <d_v_value> <d_e_value>
+	./hyper_dk_series <hypergraph> <d_v> <d_e>
 
 ### Arguments
-#### `<hypergraph_name>`
-Require *hypergraph_name*\_nverts.txt and *hypergraph_name*\_hyperedges.txt at `hyper-dk-series/data`.
+#### `<hypergraph>`
+Require *hypergraph*\_nverts.txt and *hypergraph*\_hyperedges.txt at `hyper-dk-series/data`.
 
-#### `<d_v_value>`
+#### `<d_v>`
 Specify 0, 1, 2, or 2.5.
 
-#### `<d_e_value>`
+#### `<d_e>`
 Specify 0 or 1.
 
 ### Output
-Two output files, *hypergraph_name*\_d_v_*d_v_value*_d_e_*d_e_value*_nverts.txt and *hypergraph_name*\_d_v_*d_v_value*_d_e_*d_e_value*_hyperedges.txt, are made at `hyper-dk-series/rand_hypergraph`.
+Two output files, *hypergraph*\_d_v_*d_v*_d_e_*d_e*\_nverts.txt are made at `hyper-dk-series/rand_hypergraph`. 
