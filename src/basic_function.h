@@ -2,14 +2,14 @@
 #define BASIC_FUNCTION_H
 
 //one-dimensional property (e.g., degree distribution)
-template <typename TYPE> class OneDimProp{
+template <typename TYPE> class Vector{
 	public:
 		std::unordered_map<int, int> key_to_ids;
 		std::vector<int> id_to_keys;
 		std::vector<TYPE> entries;
 
-		OneDimProp();
-		~OneDimProp();
+		Vector();
+		~Vector();
 
 		int clear();
 		int entry(const int k);
@@ -21,21 +21,21 @@ template <typename TYPE> class OneDimProp{
 };
 
 template <typename TYPE>
-OneDimProp<TYPE>::OneDimProp(){
+Vector<TYPE>::Vector(){
 	key_to_ids = std::unordered_map<int, int>();
 	id_to_keys = std::vector<int>();
     entries = std::vector<TYPE>();
 }
 
 template <typename TYPE>
-OneDimProp<TYPE>::~OneDimProp(){
+Vector<TYPE>::~Vector(){
 	std::unordered_map<int, int>().swap(key_to_ids);
 	std::vector<int>().swap(id_to_keys);
     std::vector<TYPE>().swap(entries);
 }
 
 template <typename TYPE>
-int OneDimProp<TYPE>::clear(){
+int Vector<TYPE>::clear(){
 	id_to_keys.clear();
 	key_to_ids.clear();
 	entries.clear();
@@ -44,7 +44,7 @@ int OneDimProp<TYPE>::clear(){
 }
 
 template <typename TYPE>
-int OneDimProp<TYPE>::entry(const int k){
+int Vector<TYPE>::entry(const int k){
 	id_to_keys.push_back(k);
 	key_to_ids[k] = int(id_to_keys.size())-1;
 	entries.push_back(TYPE(0));
@@ -53,7 +53,7 @@ int OneDimProp<TYPE>::entry(const int k){
 }
 
 template <typename TYPE>
-TYPE OneDimProp<TYPE>::get(const int k) const{
+TYPE Vector<TYPE>::get(const int k) const{
 	if(key_to_ids.find(k) == key_to_ids.end()){
 		return 0;
 	}
@@ -64,7 +64,7 @@ TYPE OneDimProp<TYPE>::get(const int k) const{
 }
 
 template <typename TYPE>
-int OneDimProp<TYPE>::set(const int k, const TYPE value){
+int Vector<TYPE>::set(const int k, const TYPE value){
 	if(key_to_ids.find(k) == key_to_ids.end()){
 		entry(k);
 	}
@@ -77,7 +77,7 @@ int OneDimProp<TYPE>::set(const int k, const TYPE value){
 }
 
 template <typename TYPE>
-int OneDimProp<TYPE>::add(const int k, const TYPE value){
+int Vector<TYPE>::add(const int k, const TYPE value){
     if(key_to_ids.find(k) == key_to_ids.end()){
 		entry(k);
 	}
@@ -90,7 +90,7 @@ int OneDimProp<TYPE>::add(const int k, const TYPE value){
 }
 
 template <typename TYPE>
-int OneDimProp<TYPE>::subtract(const int k, const TYPE value){
+int Vector<TYPE>::subtract(const int k, const TYPE value){
 	if(key_to_ids.find(k) == key_to_ids.end()){
 		entry(k);
 	}
@@ -103,7 +103,7 @@ int OneDimProp<TYPE>::subtract(const int k, const TYPE value){
 }
 
 template <typename TYPE>
-int OneDimProp<TYPE>::get_keys(std::vector<int> &keys) const{
+int Vector<TYPE>::get_keys(std::vector<int> &keys) const{
 	keys.clear();
 	keys = std::vector<int>(id_to_keys);
 
@@ -111,14 +111,14 @@ int OneDimProp<TYPE>::get_keys(std::vector<int> &keys) const{
 }
 
 //two-dimensional property (e.g., joint degree distribution)
-template <typename TYPE> class TwoDimProp{
+template <typename TYPE> class Matrix{
 	public:
 		std::unordered_map<int, int> key_to_ids;
 		std::vector<int> id_to_keys;
 		std::vector<std::vector<TYPE>> entries;
 
-		TwoDimProp();
-		~TwoDimProp();
+		Matrix();
+		~Matrix();
 
 		int clear();
 		int entry(const int k);
@@ -131,21 +131,21 @@ template <typename TYPE> class TwoDimProp{
 };
 
 template <typename TYPE>
-TwoDimProp<TYPE>::TwoDimProp(){
+Matrix<TYPE>::Matrix(){
 	key_to_ids = std::unordered_map<int, int>();
 	id_to_keys = std::vector<int>();
     entries = std::vector<std::vector<TYPE>>();
 }
 
 template <typename TYPE>
-TwoDimProp<TYPE>::~TwoDimProp(){
+Matrix<TYPE>::~Matrix(){
 	std::unordered_map<int, int>().swap(key_to_ids);
 	std::vector<int>().swap(id_to_keys);
     std::vector<std::vector<TYPE>>().swap(entries);
 }
 
 template <typename TYPE>
-int TwoDimProp<TYPE>::clear(){
+int Matrix<TYPE>::clear(){
 	key_to_ids.clear();
 	id_to_keys.clear();
 	entries.clear();
@@ -154,7 +154,7 @@ int TwoDimProp<TYPE>::clear(){
 }
 
 template <typename TYPE>
-int TwoDimProp<TYPE>::entry(const int k){
+int Matrix<TYPE>::entry(const int k){
 	int size = int(id_to_keys.size());
 
 	id_to_keys.push_back(k);
@@ -170,7 +170,7 @@ int TwoDimProp<TYPE>::entry(const int k){
 }
 
 template <typename TYPE>
-TYPE TwoDimProp<TYPE>::get(const int k, const int l) const{
+TYPE Matrix<TYPE>::get(const int k, const int l) const{
 	if(key_to_ids.find(k) == key_to_ids.end()){
 		return 0;
 	}
@@ -185,7 +185,7 @@ TYPE TwoDimProp<TYPE>::get(const int k, const int l) const{
 }
 
 template <typename TYPE>
-int TwoDimProp<TYPE>::set(const int k, const int l, const TYPE value){
+int Matrix<TYPE>::set(const int k, const int l, const TYPE value){
 	if(key_to_ids.find(k) == key_to_ids.end()){
 		entry(k);
 	}
@@ -203,7 +203,7 @@ int TwoDimProp<TYPE>::set(const int k, const int l, const TYPE value){
 }
 
 template <typename TYPE>
-int TwoDimProp<TYPE>::add(const int k, const int l, const TYPE value){
+int Matrix<TYPE>::add(const int k, const int l, const TYPE value){
     if(key_to_ids.find(k) == key_to_ids.end()){
 		entry(k);
 	}
@@ -221,7 +221,7 @@ int TwoDimProp<TYPE>::add(const int k, const int l, const TYPE value){
 }
 
 template <typename TYPE>
-int TwoDimProp<TYPE>::subtract(const int k, const int l, const TYPE value){
+int Matrix<TYPE>::subtract(const int k, const int l, const TYPE value){
 	if(key_to_ids.find(k) == key_to_ids.end()){
 		entry(k);
 	}
@@ -239,7 +239,7 @@ int TwoDimProp<TYPE>::subtract(const int k, const int l, const TYPE value){
 }
 
 template <typename TYPE>
-TYPE TwoDimProp<TYPE>::sum_line(const int k) const{
+TYPE Matrix<TYPE>::sum_line(const int k) const{
 	if(key_to_ids.find(k) == key_to_ids.end()){
 		return 0;
 	}
@@ -252,7 +252,7 @@ TYPE TwoDimProp<TYPE>::sum_line(const int k) const{
 }
 
 template <typename TYPE>
-int TwoDimProp<TYPE>::get_keys(std::vector<int> &keys) const{
+int Matrix<TYPE>::get_keys(std::vector<int> &keys) const{
 	keys.clear();
 	keys = std::vector<int>(id_to_keys);
 
@@ -262,15 +262,5 @@ int TwoDimProp<TYPE>::get_keys(std::vector<int> &keys) const{
 int generate_rand(const int N);
 
 int random_choice(const std::vector<int> &v);
-
-int calc_relative_error_scalar(const double emp, const double gen, double &re);
-
-int calc_relative_error_vector(const OneDimProp<double> emp, const OneDimProp<double> gen, double &re);
-
-int calc_kolmogorov_smirnov_distance(const std::vector<double> emp, const std::vector<double> gen, double &ksdist);
-
-int calc_mean(const std::vector<double> &v, double &mean);
-
-int calc_standard_deviation(const std::vector<double> &v, double &sd);
 
 #endif
