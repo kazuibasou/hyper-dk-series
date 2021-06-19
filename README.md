@@ -23,6 +23,6 @@ The structure of the directory will be as follows:
 ## Usage
 Execute the following command at  `KDD2020/bin`: 
 
-	./hyper_dk_series _<hypergraph_name>_ _<d_v_value>_ _<d_e_value>_ 
+	./hyper_dk_series <hypergraph_name> <d_v_value> <d_e_value>
 
 
