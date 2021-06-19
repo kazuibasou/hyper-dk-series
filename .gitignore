@@ -35,4 +35,4 @@
 ./bin/.DS_Store
 ./data/.DS_Store
 ./src/.DS_Store
-./result/
+./rand_hypergraph/
