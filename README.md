@@ -21,7 +21,7 @@ The structure of the directory will be as follows:
 	└ src
 
 ## Usage
-Execute the following command at  `KDD2020/bin`: 
+Execute the following command at  `hyper-dk-series/bin`: 
 
 	./hyper_dk_series <hypergraph_name> <d_v_value> <d_e_value>
 
