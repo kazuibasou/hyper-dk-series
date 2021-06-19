@@ -1,7 +1,11 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -Wextra -O3
 
-main: hyper_dk_series mkdir clean
+main: mkdir hyper_dk_series clean
+
+mkdir:
+	mkdir -p ../rand_hypergraph
+	mkdir -p ../bin
 
 hyper_dk_series: basic_function.o hypergraph.o rewiring.o hyper_dk_series.o
 	$(CXX) $(CXXFLAGS) -o ../bin/hyper_dk_series basic_function.o hypergraph.o rewiring.o hyper_dk_series.o -O3
@@ -13,10 +17,6 @@ hypergraph.o: ./hypergraph.cpp ./hypergraph.h ./basic_function.h
 	$(CXX) $(CXXFLAGS) -c ./hypergraph.cpp -O3
 rewiring.o: ./rewiring.cpp ./basic_function.h ./hypergraph.h ./rewiring.h
 	$(CXX) $(CXXFLAGS) -c ./rewiring.cpp -O3
-
-mkdir:
-	mkdir -p ../rand_hypergraph
-	mkdir -p ../bin
 
 clean:
 	rm *.o
