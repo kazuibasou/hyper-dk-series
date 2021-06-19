@@ -32,7 +32,7 @@
 *.app
 
 .DS_Store
-./bin/.DS_Store
 ./data/.DS_Store
 ./src/.DS_Store
 ./rand_hypergraph
+./bin
