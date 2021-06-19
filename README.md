@@ -25,11 +25,15 @@ Execute the following command at  `hyper-dk-series/bin`.
 
 	./hyper_dk_series <hypergraph_name> <d_v_value> <d_e_value>
 
-### `<hypergraph_name>`
+### Arguments
+#### `<hypergraph_name>`
 Require *hypergraph_name*\_nverts.txt and *hypergraph_name*\_hyperedges.txt at `hyper-dk-series/data`.
 
-### `<d_v_value>`
+#### `<d_v_value>`
 Specify 0, 1, 2, or 2.5.
 
-### `<d_e_value>`
+#### `<d_e_value>`
 Specify 0 or 1.
+
+### Output
+Two output files, *hypergraph_name*\_d_v_*d_v_value*_d_e_*d_e_value*_nverts.txt and *hypergraph_name*\_d_v_*d_v_value*_d_e_*d_e_value*_hyperedges.txt, are made at `hyper-dk-series/rand_hypergraph`.
