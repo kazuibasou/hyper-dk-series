@@ -16,6 +16,7 @@ rewiring.o: ./rewiring.cpp ./basic_function.h ./hypergraph.h ./rewiring.h
 
 mkdir:
 	mkdir -p ../rand_hypergraph
+	mkdir -p ../bin
 
 clean:
 	rm *.o
