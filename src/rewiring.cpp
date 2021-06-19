@@ -1,14 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <iostream>
 #include <vector>
 #include <random>
-#include <algorithm>
 #include <unordered_map>
-#include <chrono>
-#include <math.h>
 #include <set>
+#include <algorithm>
 #include "basic_function.h"
 #include "hypergraph.h"
 #include "rewiring.h"

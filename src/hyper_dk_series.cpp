@@ -1,15 +1,7 @@
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <vector>
-#include <queue>
-#include <string>
-#include <algorithm>
-#include <numeric>
-#include <set>
 #include <random>
 #include <unordered_map>
+#include <algorithm>
 #include "basic_function.h"
 #include "hypergraph.h"
 #include "rewiring.h"

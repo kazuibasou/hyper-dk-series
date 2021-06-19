@@ -1,24 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <iostream>
-#include <string.h>
 #include <random>
 #include <vector>
 #include <unordered_map>
-#include <algorithm>
-#include <cmath>
-#include <float.h>
-#include <math.h>
-#include <numeric>
 #include "basic_function.h"
 
 int generate_rand(const int N){
+
 	if(N == 0){
 		printf("Error: Given integer is zero.\n");
 		exit(0);
 	}
-    
 	srand((unsigned int)time(NULL));
 	std::random_device rd;
     std::mt19937 mt(rd());
@@ -28,6 +18,11 @@ int generate_rand(const int N){
 }
 
 int random_choice(const std::vector<int> &v){
+
+	if(int(v.size()) == 0){
+		printf("Error: Given vector is empty.\n");
+		exit(0);
+	}
 
 	int index = generate_rand(int(v.size()));
 

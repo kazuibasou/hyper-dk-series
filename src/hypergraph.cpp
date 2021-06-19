@@ -1,18 +1,9 @@
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <vector>
-#include <string>
-#include <algorithm>
-#include <math.h>
 #include <random>
 #include <deque>
-#include <stack>
-#include <queue>
-#include <numeric>
 #include <set>
 #include <unordered_map>
+#include <algorithm>
 #include "basic_function.h"
 #include "hypergraph.h"
 
