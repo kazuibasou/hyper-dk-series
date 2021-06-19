@@ -36,4 +36,4 @@ Specify 0, 1, 2, or 2.5.
 Specify 0 or 1.
 
 ### Output
-Two output files, *hypergraph*\_d_v_*d_v*_d_e_*d_e*\_nverts.txt are made at `hyper-dk-series/rand_hypergraph`. 
+Two output files, *hypergraph*\_d_v_*d_v*\_d_e\_*d_e*\_nverts.txt are made at `hyper-dk-series/rand_hypergraph`. 
