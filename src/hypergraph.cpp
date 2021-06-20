@@ -13,19 +13,22 @@ HyperGraph::HyperGraph(){
 	M = 0;
 	elist = std::vector<std::vector<int>>();
 	vlist = std::vector<std::vector<int>>();
+	max_node_deg = 0;
 	
-	node_degree.clear();
-	sum_node_degree = 0;
+	node_degree = std::vector<int>();
 	num_jnt_node_deg.clear();
-	degree_node_redun_coeff.clear();
-	edge_size.clear();
-	sum_edge_size = 0;
+	node_redun_coeff = std::vector<double>();
+	degree_node_redun_coeff = std::vector<double>();
+	edge_size = std::vector<int>();
 }
 
 HyperGraph::~HyperGraph(){
 
 	std::vector<std::vector<int>>().swap(elist);
 	std::vector<std::vector<int>>().swap(vlist);
+	std::vector<int>().swap(node_degree);
+	std::vector<double>().swap(degree_node_redun_coeff);
+	std::vector<int>().swap(edge_size);
 }
 
 int HyperGraph::read_hypergraph(const char *graphname){
@@ -113,8 +116,12 @@ int HyperGraph::read_hypergraph(const char *graphname){
 	fclose(f1);
 	fclose(f2);
 
+	max_node_deg = 0;
 	for(int i=0; i<N; ++i){
 		std::sort(elist[i].begin(),elist[i].end());
+		if(int(elist[i].size()) > max_node_deg){
+			max_node_deg = int(elist[i].size());
+		}
 	}
 	for(int i=0; i<M; ++i){
 		std::sort(vlist[i].begin(),vlist[i].end());
@@ -170,7 +177,7 @@ int HyperGraph::remove_node_from_hyperedge(const int &v, const int &m){
 	return 0;
 }
 
-HyperGraph HyperGraph::return_largest_connected_component(){
+HyperGraph HyperGraph::return_largest_connected_component() const{
 
 	std::vector<int> searched(N, 0);
 	std::vector<std::vector<int>> LCC_elist(N, std::vector<int>());
@@ -282,19 +289,13 @@ HyperGraph HyperGraph::remove_hyperedges_less_than_two_size() const{
 
 int HyperGraph::calc_node_degree(){
 
-	node_degree.clear();
+	node_degree = std::vector<int>(N, 0);
+	max_node_deg = 0;
 	for(int v=0; v<N; ++v){
-		node_degree.set(v, int(elist[v].size()));
-	}
-
-	return 0;
-}
-
-int HyperGraph::calc_sum_node_degree(){
-
-	sum_node_degree = 0;
-	for(int v=0; v<N; ++v){
-		sum_node_degree += int(elist[v].size());
+		node_degree[v] = int(elist[v].size());
+		if(int(elist[v].size()) > max_node_deg){
+			max_node_deg = int(elist[v].size());
+		}
 	}
 
 	return 0;
@@ -321,26 +322,15 @@ int HyperGraph::calc_num_jnt_node_deg(){
 	return 0;
 }
 
-int HyperGraph::calc_sum_num_jnt_node_deg(){
-
-	sum_num_jnt_node_deg = 0;
-	int m, s;
-	for(m=0; m<M; ++m){
-		s = int(vlist[m].size());
-		sum_num_jnt_node_deg += s*(s-1);
-	}
-
-	return 0;
-}
-
 int HyperGraph::calc_node_redundancy_coefficient(){
-	node_redun_coeff.clear();
+	node_redun_coeff = std::vector<double>(N, 0.0);
 	int d, i, j, m1, m2;
 
 	for(int v=0; v<N; ++v){
 		d = int(elist[v].size());
 		if(d < 2){continue;}
 
+		double rc = 0.0;
 		for(i=0; i<d-1; ++i){
 			m1 = elist[v][i];
 			for(j=i+1; j<d; ++j){
@@ -352,12 +342,12 @@ int HyperGraph::calc_node_redundancy_coefficient(){
 				std::set_difference(s1.begin(), s1.end(), s2.begin(), s2.end(), std::inserter(s3, s3.end()));
 
 				if(int(s3.size()) > 0){
-					node_redun_coeff.add(v, 2);
+					rc += 2.0;
 				}
 			}
 		}
 
-		node_redun_coeff.set(v, double(node_redun_coeff.get(v))/(d*(d-1)));
+		node_redun_coeff[v] = double(rc)/(d*(d-1));
 	}
 
 	return 0;
@@ -366,19 +356,18 @@ int HyperGraph::calc_node_redundancy_coefficient(){
 int HyperGraph::calc_degree_dependent_node_redundancy_coefficient(){
 	
 	calc_node_redundancy_coefficient();
-	degree_node_redun_coeff.clear();
-	Vector<int> N_k;
+	degree_node_redun_coeff = std::vector<double>(max_node_deg+1, 0.0);
+	std::vector<int> N_k(max_node_deg+1, 0);
 
 	for(int v=0; v<N; ++v){
 		int k = int(elist[v].size());
-		N_k.add(k, 1);
-		degree_node_redun_coeff.add(k, node_redun_coeff.get(v));
+		N_k[k] += 1;
+		degree_node_redun_coeff[k] += node_redun_coeff[v];
 	}
 
-	for(int id=0; id<int(N_k.id_to_keys.size()); ++id){
-		int k = N_k.id_to_keys[id];
-		if(k > 1 && N_k.get(k) > 0){
-			degree_node_redun_coeff.set(k, double(degree_node_redun_coeff.get(k))/N_k.get(k));
+	for(int k=2; k<int(N_k.size()); ++k){
+		if(N_k[k] > 0){
+			degree_node_redun_coeff[k] = double(degree_node_redun_coeff[k])/N_k[k];
 		}
 	}
 
@@ -387,19 +376,9 @@ int HyperGraph::calc_degree_dependent_node_redundancy_coefficient(){
 
 int HyperGraph::calc_edge_size(){
 
-	edge_size.clear();
+	edge_size = std::vector<int>(M, 0);
 	for(int m=0; m<M; ++m){
-		edge_size.set(m, int(vlist[m].size()));
-	}
-
-	return 0;
-}
-
-int HyperGraph::calc_sum_edge_size(){
-
-	sum_edge_size = 0;
-	for(int m=0; m<M; ++m){
-		sum_edge_size += int(vlist[m].size());
+		edge_size[m] = int(vlist[m].size());
 	}
 
 	return 0;

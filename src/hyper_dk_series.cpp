@@ -49,10 +49,13 @@ HyperGraph randomizing_d_v_zero_d_e_zero(HyperGraph G){
 
 	printf("Started generating a randomized hypergraph with (d_v, d_e) = (0, 0).\n");
 
-	G.calc_sum_node_degree();
 	int N = G.N;
 	int M = G.M;
-	int B_M = G.sum_node_degree;
+
+	int B_M = 0;
+	for(int v=0; v<N; ++v){
+		B_M += int(G.elist[v].size());
+	}
 
 	int v, m;
 	std::random_device rd;

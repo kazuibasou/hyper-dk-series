@@ -10,14 +10,24 @@
 HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
 
 	G.calc_num_jnt_node_deg();
-	G.calc_sum_num_jnt_node_deg();
 	const Matrix<int> target_num_jnt_node_deg = Matrix<int>(G.num_jnt_node_deg);
-	const int target_sum_num_jnt_node_deg = G.sum_num_jnt_node_deg;
+
+	int G_sum = 0;
+	for(int m=0; m<G.M; ++m){
+		int s = int(G.vlist[m].size());
+		G_sum += s*(s-1);
+	}
+	const int target_sum_num_jnt_node_deg = G_sum;
 
 	rand_G.calc_num_jnt_node_deg();
-	rand_G.calc_sum_num_jnt_node_deg();
 	Matrix<int> num_jnt_node_deg = Matrix<int>(rand_G.num_jnt_node_deg);
-	const int sum_num_jnt_node_deg = rand_G.sum_num_jnt_node_deg;
+
+	int rand_G_sum = 0;
+	for(int m=0; m<rand_G.M; ++m){
+		int s = int(rand_G.vlist[m].size());
+		rand_G_sum += s*(s-1);
+	}
+	const int sum_num_jnt_node_deg = rand_G_sum;
 
 	G.calc_node_degree();
 	rand_G.calc_node_degree();
@@ -25,10 +35,10 @@ HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
 
 	std::set<int> degrees;
 	for(int v=0; v<G.N; ++v){
-		degrees.insert(G.node_degree.get(v));
+		degrees.insert(G.node_degree[v]);
 	}
 	for(int v=0; v<rand_G.N; ++v){
-		degrees.insert(rand_G.node_degree.get(v));
+		degrees.insert(rand_G.node_degree[v]);
 	}
 
 	double dist = 0;
@@ -76,26 +86,26 @@ HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
 			m2 = bipartite_edges[e2].second;
 		}
 
-		k1 = rand_G.node_degree.get(u);
-		k2 = rand_G.node_degree.get(v);
+		k1 = rand_G.node_degree[u];
+		k2 = rand_G.node_degree[v];
 
 		Matrix<int> num_jnt_node_deg_to_add;
 
 		for(int w:rand_G.vlist[m1]){
-			l = rand_G.node_degree.get(w);
+			l = rand_G.node_degree[w];
 			num_jnt_node_deg_to_add.subtract(k1, l, 1);
 			num_jnt_node_deg_to_add.subtract(l, k1, 1);
 		}
 		num_jnt_node_deg_to_add.add(k1, k1, 2);
 
 		for(int w:rand_G.vlist[m2]){
-			l = rand_G.node_degree.get(w);
+			l = rand_G.node_degree[w];
 			num_jnt_node_deg_to_add.add(k1, l, 1);
 			num_jnt_node_deg_to_add.add(l, k1, 1);
 		}
 
 		for(int w:rand_G.vlist[m2]){
-			l = rand_G.node_degree.get(w);
+			l = rand_G.node_degree[w];
 			num_jnt_node_deg_to_add.subtract(k2, l, 1);
 			num_jnt_node_deg_to_add.subtract(l, k2, 1);
 		}
@@ -104,7 +114,7 @@ HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
 		num_jnt_node_deg_to_add.subtract(k2, k1, 1);
 
 		for(int w:rand_G.vlist[m1]){
-			l = rand_G.node_degree.get(w);
+			l = rand_G.node_degree[w];
 			num_jnt_node_deg_to_add.add(k2, l, 1);
 			num_jnt_node_deg_to_add.add(l, k2, 1);
 		}
@@ -181,7 +191,7 @@ int update_degree_node_redundancy_coefficient_by_edge_addition(HyperGraph &rand_
 			s5.clear();
 			std::set_difference(s1.begin(), s1.end(), s4.begin(), s4.end(), std::inserter(s5, s5.end()));
 			if(s5 == s2 && std::count(rand_G.vlist[m].begin(), rand_G.vlist[m].end(), v) == 1){
-				l = rand_G.node_degree.get(w);
+				l = rand_G.node_degree[w];
 				x = std::count(rand_G.elist[w].begin(), rand_G.elist[w].end(), m);
 				y = std::count(rand_G.elist[w].begin(), rand_G.elist[w].end(), m2);
 				degree_node_num_redun_to_add[l] += x*y;
@@ -224,7 +234,7 @@ int update_degree_node_redundancy_coefficient_by_edge_deletion(HyperGraph &rand_
 			s5.clear();
 			std::set_difference(s1.begin(), s1.end(), s4.begin(), s4.end(), std::inserter(s5, s5.end()));
 			if(int(s5.size()) == 0){
-				l = rand_G.node_degree.get(w);
+				l = rand_G.node_degree[w];
 				x = std::count(rand_G.elist[w].begin(), rand_G.elist[w].end(), m);
 				y = std::count(rand_G.elist[w].begin(), rand_G.elist[w].end(), m2);
 				degree_node_num_redun_to_add[l] -= x*y;
@@ -239,23 +249,16 @@ int update_degree_node_redundancy_coefficient_by_edge_deletion(HyperGraph &rand_
 HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph rand_G){
 
 	G.calc_degree_dependent_node_redundancy_coefficient();
+	std::vector<double> target_degree_node_redun_coeff = std::vector<double>(G.degree_node_redun_coeff);
+	
 	rand_G.calc_degree_dependent_node_redundancy_coefficient();
+	std::vector<double> degree_node_redun_coeff = std::vector<double>(rand_G.degree_node_redun_coeff);
 
-	int max_degree = 0;
-	int k;
-	for(int id=0; id<int(rand_G.degree_node_redun_coeff.id_to_keys.size()); ++id){
-		k = rand_G.degree_node_redun_coeff.id_to_keys[id];
-		max_degree = std::max(max_degree, k);
-	}
-	const int d_size = max_degree + 1;
+	const int d_size = G.max_node_deg + 1;
 
-	std::vector<double> target_degree_node_redun_coeff(d_size, 0.0);
-	std::vector<double> degree_node_redun_coeff(d_size, 0.0);
 	double dist = 0;
 	double norm = 0;
 	for(int k=2; k<d_size; ++k){
-		target_degree_node_redun_coeff[k] = double(G.degree_node_redun_coeff.get(k));
-		degree_node_redun_coeff[k] = double(rand_G.degree_node_redun_coeff.get(k));
 		dist += std::fabs(target_degree_node_redun_coeff[k] - degree_node_redun_coeff[k]);
 		norm += std::fabs(target_degree_node_redun_coeff[k]);
 	}
@@ -266,8 +269,9 @@ HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph rand_G){
 	rand_G.calc_edge_size();
 
 	std::vector<int> N_k(d_size, 0);
+	int k;
 	for(int v=0; v<rand_G.N; ++v){
-		k = rand_G.node_degree.get(v);
+		k = rand_G.node_degree[v];
 		N_k[k] += 1;
 	}
 
@@ -305,8 +309,8 @@ HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph rand_G){
 		m1 = bipartite_edges[e1].second;
 		v = bipartite_edges[e2].first;
 		m2 = bipartite_edges[e2].second;
-		k1 = rand_G.node_degree.get(u);
-		k2 = rand_G.node_degree.get(v);
+		k1 = rand_G.node_degree[u];
+		k2 = rand_G.node_degree[v];
 		while(u == v || m1 == m2 || k1 != k2){
 			e1 = randB_M(mt);
 			e2 = randB_M(mt);
@@ -314,8 +318,8 @@ HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph rand_G){
 			m1 = bipartite_edges[e1].second;
 			v = bipartite_edges[e2].first;
 			m2 = bipartite_edges[e2].second;
-			k1 = rand_G.node_degree.get(u);
-			k2 = rand_G.node_degree.get(v);
+			k1 = rand_G.node_degree[u];
+			k2 = rand_G.node_degree[v];
 		}
 
 		degree_node_num_redun_to_add = std::vector<int>(d_size, 0);
