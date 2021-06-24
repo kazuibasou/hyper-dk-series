@@ -4,7 +4,7 @@ Hyper dK-series is a family of randomized reference models for hypergraphs.
 ## Requirements
 Require gcc version 4.2.1 or later.
 
-I confirmed that my code works on the following environments.
+I have confirmed that my code works on the following environments.
 
 - macOS 11.4
 - Ubuntu 16.04.3 LTS
@@ -19,6 +19,8 @@ The structure of the directory will be as follows:
 	├ data
 	├ rand_hypergraph
 	└ src
+
+If you find `hyper_dk_series` at `hyper-dk-series/bin`, the build has been successfully completed.
 
 ## Usage
 Execute the following command at  `hyper-dk-series/bin`.

@@ -9,6 +9,8 @@
 
 HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
 
+	printf("Targeting-rewiring process with d_v = 2.\n");
+
 	G.calc_num_jnt_node_deg();
 	const Matrix<int> target_num_jnt_node_deg = Matrix<int>(G.num_jnt_node_deg);
 
@@ -50,7 +52,7 @@ HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
 		}
 	}
 
-	printf("Initial L1 distance between the target and current pairwise joint degree distributions of the node: %lf\n", double(dist)/norm);
+	printf("Initial L1 distance between the target and present P_v(k, k'): %lf\n", double(dist)/norm);
 
 	std::vector<std::pair<int,int>> bipartite_edges;
 	for(int v=0; v<rand_G.N; ++v){
@@ -155,7 +157,7 @@ HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
 		}
 	}
 
-	printf("Final L1 distance between target and current pairwise joint degree distributions of the node: %lf\n", double(dist)/norm);
+	printf("Final L1 distance between target and current P_v(k, k'): %lf\n", double(dist)/norm);
 
 	return rand_G;
 }
@@ -248,6 +250,8 @@ int update_degree_node_redundancy_coefficient_by_edge_deletion(HyperGraph &rand_
 
 HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph rand_G){
 
+	printf("Targeting-rewiring process with d_v = 2.5.\n");
+
 	G.calc_degree_dependent_node_redundancy_coefficient();
 	std::vector<double> target_degree_node_redun_coeff = std::vector<double>(G.degree_node_redun_coeff);
 	
@@ -263,7 +267,7 @@ HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph rand_G){
 		norm += std::fabs(target_degree_node_redun_coeff[k]);
 	}
 
-	printf("Initial L1 distance between target and current degree-dependent redundancy coefficient of the node: %lf\n", double(dist)/norm);
+	printf("Initial L1 distance between target and present r(k): %lf\n", double(dist)/norm);
 
 	rand_G.calc_node_degree();
 	rand_G.calc_edge_size();
@@ -356,7 +360,7 @@ HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph rand_G){
 		}
 	}
 
-	printf("Final L1 distance between target and current degree-dependent redundancy coefficient of the node: %lf\n", double(dist)/norm);
+	printf("Final L1 distance between target and present r(k): %lf\n", double(dist)/norm);
 
 	return rand_G;
 }

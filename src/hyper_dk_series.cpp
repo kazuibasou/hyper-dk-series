@@ -6,12 +6,13 @@
 #include "hypergraph.h"
 #include "rewiring.h"
 
-int write_hypergraph(const char *graphname, const std::string d_v, const std::string d_e, HyperGraph rand_G){
+int write_hypergraph(const char *graphname, const std::string d_v, const std::string d_e, 
+	const int k, HyperGraph rand_G){
 
 	const char *dir = "../rand_hypergraph/";
 
 	FILE *f1;
-	std::string f1path = std::string(dir) + graphname + "_d_v_" + d_v + "_d_e_" + d_e + "_nverts.txt";
+	std::string f1path = std::string(dir) + graphname + "_d_v_" + d_v + "_d_e_" + d_e + "_n_" + std::to_string(k) + "_nverts.txt";
 	f1 = fopen(f1path.c_str(), "w");
 	if(f1 == NULL) {
 		printf("Error: Could not open file named %s_nverts.txt.\n", graphname);
@@ -25,7 +26,7 @@ int write_hypergraph(const char *graphname, const std::string d_v, const std::st
 	fclose(f1);
 
 	FILE *f2;
-	std::string f2path = std::string(dir) + graphname + "_d_v_" + d_v + "_d_e_" + d_e + "_hyperedges.txt";
+	std::string f2path = std::string(dir) + graphname + "_d_v_" + d_v + "_d_e_" + d_e + "_n_" + std::to_string(k) + "_hyperedges.txt";
 	f2 = fopen(f2path.c_str(), "w");
 	if(f2 == NULL) {
 		printf("Error: Could not open file named %s_hyperedges.txt.\n", graphname);
@@ -40,14 +41,12 @@ int write_hypergraph(const char *graphname, const std::string d_v, const std::st
 
 	fclose(f2);
 
-	printf("Wrote data of randomized hypergraph with (d_v, d_e) = (%s, %s).\n", d_v.c_str(), d_e.c_str());
+	printf("Wrote the randomized hypergraph with (d_v, d_e) = (%s, %s) at ./hyper_dk_series/rand_hypergraph/.\n\n", d_v.c_str(), d_e.c_str());
 
 	return 0;
 }
 
 HyperGraph randomizing_d_v_zero_d_e_zero(HyperGraph G){
-
-	printf("Started generating a randomized hypergraph with (d_v, d_e) = (0, 0).\n");
 
 	int N = G.N;
 	int M = G.M;
@@ -83,14 +82,12 @@ HyperGraph randomizing_d_v_zero_d_e_zero(HyperGraph G){
 		std::sort(rand_G.vlist[i].begin(),rand_G.vlist[i].end());
 	}
 
-	printf("Finished generating a randomized hypergraph with (d_v, d_e) = (0, 0).\n\n");
+	printf("Successfully generated a randomized hypergraph with (d_v, d_e) = (0, 0).\n");
 
 	return rand_G;
 }
 
 HyperGraph randomizing_d_v_one_d_e_zero(HyperGraph G){
-
-	printf("Started generating a randomized hypergraph with (d_v, d_e) = (1, 0).\n");
 
 	int N = G.N;
 	int M = G.M;
@@ -131,14 +128,12 @@ HyperGraph randomizing_d_v_one_d_e_zero(HyperGraph G){
 		std::sort(rand_G.vlist[i].begin(),rand_G.vlist[i].end());
 	}
 
-	printf("Finished generating a randomized hypergraph with (d_v, d_e) = (1, 0).\n\n");
+	printf("Successfully generated a randomized hypergraph with (d_v, d_e) = (1, 0).\n");
 
 	return rand_G;
 }
 
 HyperGraph randomizing_d_v_zero_d_e_one(HyperGraph G){
-	
-	printf("Started generating a randomized hypergraph with (d_v, d_e) = (0, 1).\n");
 
 	int N = G.N;
 	int M = G.M;
@@ -179,14 +174,12 @@ HyperGraph randomizing_d_v_zero_d_e_one(HyperGraph G){
 		std::sort(rand_G.vlist[i].begin(),rand_G.vlist[i].end());
 	}
 
-	printf("Finished generating a randomized hypergraph with (d_v, d_e) = (0, 1).\n\n");
+	printf("Successfully generated a randomized hypergraph with (d_v, d_e) = (0, 1).\n");
 
 	return rand_G;
 }
 
 HyperGraph randomizing_d_v_one_d_e_one(HyperGraph G){
-
-	printf("Started generating a randomized hypergraph with (d_v, d_e) = (1, 1).\n");
 	
 	int N = G.N;
 	int M = G.M;
@@ -235,7 +228,7 @@ HyperGraph randomizing_d_v_one_d_e_one(HyperGraph G){
 		std::sort(rand_G.vlist[i].begin(),rand_G.vlist[i].end());
 	}
 
-	printf("Finished generating a randomized hypergraph with (d_v, d_e) = (1, 1).\n\n");
+	printf("Successfully generated a randomized hypergraph with (d_v, d_e) = (1, 1).\n");
 
 	return rand_G;
 }
@@ -246,9 +239,9 @@ HyperGraph randomizing_d_v_two_d_e_zero(HyperGraph G){
 	
 	rand_G = randomizing_d_v_one_d_e_zero(G);
 
-	printf("Started targeting rewiring with d_v = 2.\n");
 	rand_G = targeting_rewiring_d_v_two(G, rand_G);
-	printf("Finished targeting rewiring with d_v = 2.\n\n");
+
+	printf("Successfully generated a randomized hypergraph with (d_v, d_e) = (2, 0).\n");
 
 	return rand_G;
 }
@@ -259,9 +252,8 @@ HyperGraph randomizing_d_v_two_d_e_one(HyperGraph G){
 
 	rand_G = randomizing_d_v_one_d_e_one(G);
 
-	printf("Started targeting rewiring with d_v = 2.\n");
 	rand_G = targeting_rewiring_d_v_two(G, rand_G);
-	printf("Finished targeting rewiring with d_v = 2.\n\n");
+	printf("Successfully generated a randomized hypergraph with (d_v, d_e) = (2, 1).\n");
 
 	return rand_G;
 }
@@ -270,15 +262,10 @@ HyperGraph randomizing_d_v_two_five_d_e_zero(HyperGraph G){
 
 	HyperGraph rand_G;
 
-	rand_G = randomizing_d_v_one_d_e_zero(G);
+	rand_G = randomizing_d_v_two_d_e_zero(G);
 
-	printf("Started targeting rewiring with d_v = 2.\n");
-	rand_G = targeting_rewiring_d_v_two(G, rand_G);
-	printf("Finished targeting rewiring with d_v = 2.\n\n");
-
-	printf("Started targeting rewiring with d_v = 2.5.\n");
 	rand_G = targeting_rewiring_d_v_two_five(G, rand_G);
-	printf("Finished targeting rewiring with d_v = 2.5.\n\n");
+	printf("Successfully generated a randomized hypergraph with (d_v, d_e) = (2.5, 0).\n");
 
 	return rand_G;
 }
@@ -287,67 +274,87 @@ HyperGraph randomizing_d_v_two_five_d_e_one(HyperGraph G){
 
 	HyperGraph rand_G;
 
-	rand_G = randomizing_d_v_one_d_e_one(G);
+	rand_G = randomizing_d_v_two_d_e_one(G);
 	
-	printf("Started targeting rewiring with d_v = 2.\n");
-	rand_G = targeting_rewiring_d_v_two(G, rand_G);
-	printf("Finished targeting rewiring with d_v = 2.\n\n");
-	
-	printf("Started targeting rewiring with d_v = 2.5.\n");
 	rand_G = targeting_rewiring_d_v_two_five(G, rand_G);
-	printf("Finished targeting rewiring with d_v = 2.5.\n\n");
+	printf("Successfully generated a randomized hypergraph with (d_v, d_e) = (2.5, 1).\n");
 
 	return rand_G;
 }
 
 int main(int argc,char *argv[]){
-	if(argc != 4){
+	if(argc != 5){
 		printf("Please input following:\n");
-		printf("./hyper_dk_series (name of hypergraph) (value of d_v) (value of d_e)\n");
+		printf("./hyper_dk_series (name of hypergraph) (value of d_v) (value of d_e) (number of generation)\n");
 		exit(0);
 	}
 	const char *graphname = argv[1];
 	const std::string d_v = argv[2];
 	const std::string d_e = argv[3];
+	const int num_gen = std::stoi(argv[4]);
 
 	HyperGraph G;
 	G.read_hypergraph(graphname);
 
 	if(d_v == "0" && d_e == "0"){
-		HyperGraph rand_G = randomizing_d_v_zero_d_e_zero(G);
-		write_hypergraph(graphname, d_v, d_e, rand_G);
+		for(int k=1; k<=num_gen; ++k){
+			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
+			HyperGraph rand_G = randomizing_d_v_zero_d_e_zero(G);
+			write_hypergraph(graphname, d_v, d_e, k, rand_G);
+		}
 	}
 	else if(d_v == "1" && d_e == "0"){
-		HyperGraph rand_G = randomizing_d_v_one_d_e_zero(G);
-		write_hypergraph(graphname, d_v, d_e, rand_G);
+		for(int k=1; k<=num_gen; ++k){
+			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
+			HyperGraph rand_G = randomizing_d_v_one_d_e_zero(G);
+			write_hypergraph(graphname, d_v, d_e, k, rand_G);
+		}
 	}
 	else if(d_v == "2" && d_e == "0"){
-		HyperGraph rand_G = randomizing_d_v_two_d_e_zero(G);
-		write_hypergraph(graphname, d_v, d_e, rand_G);
+		for(int k=1; k<=num_gen; ++k){
+			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
+			HyperGraph rand_G = randomizing_d_v_two_d_e_zero(G);
+			write_hypergraph(graphname, d_v, d_e, k, rand_G);
+		}
 	}
 	else if(d_v == "2.5" && d_e == "0"){
-		HyperGraph rand_G = randomizing_d_v_two_five_d_e_zero(G);
-		write_hypergraph(graphname, "2_5", d_e, rand_G);
+		for(int k=1; k<=num_gen; ++k){
+			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
+			HyperGraph rand_G = randomizing_d_v_two_five_d_e_zero(G);
+			write_hypergraph(graphname, "2_5", d_e, k, rand_G);
+		}
 	}
 	else if(d_v == "0" && d_e == "1"){
-		HyperGraph rand_G = randomizing_d_v_zero_d_e_one(G);
-		write_hypergraph(graphname, d_v, d_e, rand_G);
+		for(int k=1; k<=num_gen; ++k){
+			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
+			HyperGraph rand_G = randomizing_d_v_zero_d_e_one(G);
+			write_hypergraph(graphname, d_v, d_e, k, rand_G);
+		}
 	}
 	else if(d_v == "1" && d_e == "1"){
-		HyperGraph rand_G = randomizing_d_v_one_d_e_one(G);
-		write_hypergraph(graphname, d_v, d_e, rand_G);
+		for(int k=1; k<=num_gen; ++k){
+			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
+			HyperGraph rand_G = randomizing_d_v_one_d_e_one(G);
+			write_hypergraph(graphname, d_v, d_e, k, rand_G);
+		}
 	}
 	else if(d_v == "2" && d_e == "1"){
-		HyperGraph rand_G = randomizing_d_v_two_d_e_one(G);
-		write_hypergraph(graphname, d_v, d_e, rand_G);
+		for(int k=1; k<=num_gen; ++k){
+			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
+			HyperGraph rand_G = randomizing_d_v_two_d_e_one(G);
+			write_hypergraph(graphname, d_v, d_e, k, rand_G);
+		}
 	}
 	else if(d_v == "2.5" && d_e == "1"){
-		HyperGraph rand_G = randomizing_d_v_two_five_d_e_one(G);
-		write_hypergraph(graphname, "2_5", d_e, rand_G);
+		for(int k=1; k<=num_gen; ++k){
+			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
+			HyperGraph rand_G = randomizing_d_v_two_five_d_e_one(G);
+			write_hypergraph(graphname, "2_5", d_e, k, rand_G);
+		}
 	}
 	else{
 		printf("Error: Given pair (d_v, d_e) is not defined.\n");
-		printf("The pair (d_v, d_e) to be specified is (0, 0), (1, 0), (2, 0), (2.5, 0), (0, 1), (1, 1), (2, 1), or (2.5, 1).\n");
+		printf("The pair (d_v, d_e) should be (0, 0), (1, 0), (2, 0), (2.5, 0), (0, 1), (1, 1), (2, 1), or (2.5, 1).\n");
 		exit(0);
 	}
 
