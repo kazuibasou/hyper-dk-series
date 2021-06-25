@@ -38,16 +38,16 @@ Write the number of nodes contained in each hyperedge of the original hypergraph
 Write a contiguous list of the nodes comprising the hyperedges, where the ordering of the hyperedges is the same as in *hypergraph*\_nverts.txt.
 
 #### Example
-Let's consider a hypergraph, named `example_hypergraph`, that consists of a set of nodes V = {1, 2, 3} and a set of hyperedges E = {(1, 2), (1, 2, 3)}. 
-To read the hypergraph `example_hypergraph`, put the following two files at `hyper-dk-series/data`:
+Let's consider a hypergraph, named `example-hypergraph`, that consists of a set of nodes V = {1, 2, 3} and a set of hyperedges E = {(1, 2), (1, 2, 3)}. 
+To read the hypergraph `example-hypergraph`, put the following two files at `hyper-dk-series/data`:
 
-example_hypergraph_nverts.txt
+example-hypergraph_nverts.txt
 ``` text:
 2
 3
 ```
 
-example_hypergraph_hyperedges.txt
+example-hypergraph_hyperedges.txt
 ```text:
 1
 2
