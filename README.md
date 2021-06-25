@@ -60,28 +60,35 @@ example-hypergraph_hyperedges.txt
 
 Execute the following command at  `hyper-dk-series/bin`.
 
-	./hyper_dk_series <hypergraph> <d_v> <d_e> <num_gen>
+	./hyper_dk_series <hypergraph> <dv> <de> <numgen>
 
 #### `<hypergraph>`
 A name of hypergraph data to read.
 Require to put *hypergraph*\_nverts.txt and *hypergraph*\_hyperedges.txt in `hyper-dk-series/data`.
 
-#### `<d_v>`
+#### `<dv>`
 Specify 0, 1, 2, or 2.5.
 
-#### `<d_e>`
+#### `<de>`
 Specify 0 or 1.
 
 #### `<num_gen>`
 The number of generatations for randomized hypergraphs.
 
 #### Example
-To generate 5 randomized hypergraphs with (d_v, d_e) = (0, 1) for the hypergraph named `davis-southern-women`, run the following command:
+To generate 5 randomized hypergraphs with (dv, de) = (0, 1) for the hypergraph named `davis-southern-women`, run the following command:
 
 	./hyper_dk_series davis-southern-women 0 1 3
 
 ### Output files
-For the n-th (n=1, ..., *num_gen*) randomized hypergraph with (*d_v*, *d_e*), *hypergraph*\_*d_v*\_*d_e*\_*n*\_nverts.txt and *hypergraph*\_*d_v*\_*d_e*\_*n*\_hyperedges.txt are generated in `hyper-dk-series/rand_hypergraph`.
+For the n-th (n=1, ..., *num_gen*) randomized hypergraph with (*dv*, *de*), *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt are generated in `hyper-dk-series/rand_hypergraph`.
+
+For example, if one runs the following command, 
+
+	./hyper_dk_series davis-southern-women 0 1 3
+
+the following six files will be generated in `hyper-dk-series/rand_hypergraph`: davis-southern-women_0_1_1_nverts.txt, davis-southern-women_0_1_1_hyperedges.txt, davis-southern-women_0_1_2_nverts.txt, davis-southern-women_0_1_2_hyperedges.txt
+davis-southern-women_0_1_3_nverts.txt, davis-southern-women_0_1_3_hyperedges.txt.
 
 ## Reference
 
