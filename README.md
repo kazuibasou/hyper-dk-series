@@ -106,7 +106,7 @@ Then, for example, you can use 1st randomized hypergraph data for your purposes 
 
 ### Notes
 - The folder `hyper-dk-series/data` contains five hypergraph data: contact-high-school, contact-primary-school, davis-southern-women, email-Enron, and NDC-classes. The davis-southern-women were obtained from [here](https://networkx.org/documentation/stable/reference/generated/networkx.generators.social.davis_southern_women_graph.html?highlight=davis#networkx.generators.social.davis_southern_women_graph) (note that originally bipartite graph). Other hypergraph data were obtained from [Benson's datasets](https://github.com/arbenson/ScHoLP-Data).
-- When *dv* <= 1, a generation of a randomized hypergraph is very fast. When *dv* = 2, a generation relatively takes time. When *dv* = 2.5, a generation further takes a longer time than that when *dv* = 2. For example, for randomizing contact-high-school hypergraph one time, it approximately took 1 second when *dv* <= 1, 30 seconds when *dv* = 2, and 10 minutes *dv* = 2.5. The value of *de* (= 0 or 1) has no significant effect on the generation time.
+- When *dv* <= 1, a generation of a randomized hypergraph is very fast. When *dv* = 2, a generation relatively takes time. When *dv* = 2.5, a generation further takes a longer time than that when *dv* = 2. For example, for randomizing the contact-high-school hypergraph one time, it approximately took 1 second when *dv* <= 1, 30 seconds when *dv* = 2, and 10 minutes *dv* = 2.5. The value of *de* (= 0 or 1) has no significant effect on the generation time.
 
 ## Reference
 
