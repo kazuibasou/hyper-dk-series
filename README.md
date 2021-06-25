@@ -5,7 +5,7 @@ The hyper dK-series produces randomized hypergraphs that preserve up to the indi
 ## Requirements
 Require gcc version 4.2.1 or later.
 
-I have confirmed that my code works on the following environments.
+We have confirmed that our code works on the following environments.
 
 - macOS 11.4
 - Ubuntu 16.04.3 LTS
@@ -105,7 +105,7 @@ davis-southern-women_0_1_3_hyperedges.txt
 Then, for example, you can use 1st randomized hypergraph data for your purposes such as research or analysis by reading davis-southern-women_0_1_1_nverts.txt and davis-southern-women_0_1_1_nverts.txt.
 
 ### Notes
-- The folder `hyper-dk-series/data` contains five hypergraph data: contact-high-school, contact-primary-school, davis-southern-women, email-Enron, and NDC-classes. The davis-southern-women were obtained from [here](https://networkx.org/documentation/stable/reference/generated/networkx.generators.social.davis_southern_women_graph.html?highlight=davis#networkx.generators.social.davis_southern_women_graph) (note that originally bipartite graph). Other hypergraph data were obtained from [Benson's datasets](https://github.com/arbenson/ScHoLP-Data).
+- The folder `hyper-dk-series/data` contains six hypergraph data: contact-high-school, contact-primary-school, davis-southern-women, email-Enron, example-hypergraph, and NDC-classes. The davis-southern-women were obtained from [here](https://networkx.org/documentation/stable/reference/generated/networkx.generators.social.davis_southern_women_graph.html?highlight=davis#networkx.generators.social.davis_southern_women_graph) (note that originally bipartite graph). Other hypergraph data were obtained from [Benson's datasets](https://github.com/arbenson/ScHoLP-Data) and also were used in [<a href="https://arxiv.org/abs/2106.12162">our study</a>].
 - When *dv* <= 1, a generation of a randomized hypergraph is very fast. When *dv* = 2, a generation relatively takes time. When *dv* = 2.5, a generation further takes a longer time than that when *dv* = 2. For example, for randomizing the contact-high-school hypergraph one time, it approximately took 1 second when *dv* <= 1, 30 seconds when *dv* = 2, and 10 minutes *dv* = 2.5. The value of *de* (= 0 or 1) has no significant effect on the generation time.
 
 ## Reference
