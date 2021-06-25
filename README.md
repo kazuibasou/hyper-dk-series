@@ -42,7 +42,7 @@ Let's consider a hypergraph, named `example_hypergraph`, that consists of a set 
 To read the hypergraph `example_hypergraph`, one puts the following two files at `hyper-dk-series/data`:
 
 
-```text:example_hypergraph_nverts.txt
+```ruby:example_hypergraph_nverts.rb
 2
 3
 ```
