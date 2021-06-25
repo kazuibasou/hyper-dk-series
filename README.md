@@ -87,8 +87,19 @@ For example, if one runs the following command,
 
 	./hyper_dk_series davis-southern-women 0 1 3
 
-the following six files will be generated in `hyper-dk-series/rand_hypergraph`: davis-southern-women_0_1_1_nverts.txt, davis-southern-women_0_1_1_hyperedges.txt, davis-southern-women_0_1_2_nverts.txt, davis-southern-women_0_1_2_hyperedges.txt
-davis-southern-women_0_1_3_nverts.txt, davis-southern-women_0_1_3_hyperedges.txt.
+the following six files will be generated in `hyper-dk-series/rand_hypergraph`: 
+
+davis-southern-women_0_1_1_nverts.txt
+
+davis-southern-women_0_1_1_hyperedges.txt
+
+davis-southern-women_0_1_2_nverts.txt
+
+davis-southern-women_0_1_2_hyperedges.txt
+
+davis-southern-women_0_1_3_nverts.txt
+
+davis-southern-women_0_1_3_hyperedges.txt
 
 ## Reference
 
