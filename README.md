@@ -78,13 +78,14 @@ The number of generatations for randomized hypergraphs.
 #### Example
 To generate 5 randomized hypergraphs with (d_v, d_e) = (0, 1) for the hypergraph named `davis-southern-women`, run the following command:
 
-	./hyper_dk_series davis-southern-women 0 1 5
+	./hyper_dk_series davis-southern-women 0 1 3
 
 ### Output files
+For the n-th (n=1, ..., *num_gen*) randomized hypergraph with (*d_v*, *d_e*), *hypergraph*\_d_v_*d_v*\_d_e_*d_e*\_n_*n*\_nverts.txt and *hypergraph*\_d_v_*d_v*\_d_e_*d_e*\_n_*n*\_hyperedges.txt are generated in `hyper-dk-series / rand_hypergraph`.
 
 ## Reference
 
-Preprint: [<a href="https://arxiv.org/abs/2106.12162">arXiv</a>]
+Kazuki Nakajima, Kazuyuki Shudo, Naoki Masuda. Randomizing hypergraphs preserving degree correlation and local clustering, June 2021. [<a href="https://arxiv.org/abs/2106.12162">arXiv</a>]
 
 ## License
 
@@ -94,4 +95,4 @@ This source code is released under the MIT License, see LICENSE.txt.
 - Kazuki Nakajima (https://kazuibasou.github.io/index_en.html)
 - nakajima.k.an[at]m.titech.ac.jp
 
-(Last update: 2021/06/24)
+(Last update: 2021/06/25)
