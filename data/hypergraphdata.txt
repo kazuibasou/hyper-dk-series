@@ -1,4 +1,0 @@
-NDC-classes 628 816
-email-Enron 143 1512
-contact-primary-school 242 12704
-contact-high-school 327 7818
