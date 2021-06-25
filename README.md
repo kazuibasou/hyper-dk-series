@@ -26,7 +26,7 @@ If you find `hyper_dk_series` at `hyper-dk-series/bin`, the build has been succe
 
 ### Input files
 
-Require to put two files, *hypergraph*\_nverts.txt and *hypergraph*\_hyperedges.txt, at `hyper-dk-series/data`, where *hypergraph* indicates a name of hypergraph data to read.
+Require to put two files, *hypergraph*\_nverts.txt and *hypergraph*\_hyperedges.txt, in `hyper-dk-series/data`, where *hypergraph* indicates a name of hypergraph data to read.
 All two files represent a vector of integers. 
 There is one integer per line.
 These file formats follow the formats of [Benson's datasets](https://github.com/arbenson/ScHoLP-Data).
@@ -39,7 +39,7 @@ Write a contiguous list of the nodes comprising the hyperedges, where the orderi
 
 #### Example
 Let's consider a hypergraph, named `example-hypergraph`, that consists of a set of nodes V = {1, 2, 3} and a set of hyperedges E = {(1, 2), (1, 2, 3)}. 
-To read the hypergraph `example-hypergraph`, put the following two files at `hyper-dk-series/data`:
+To read the hypergraph `example-hypergraph`, put the following two files in `hyper-dk-series/data`:
 
 example-hypergraph_nverts.txt
 ``` text:
@@ -63,7 +63,8 @@ Execute the following command at  `hyper-dk-series/bin`.
 	./hyper_dk_series <hypergraph> <d_v> <d_e> <num_gen>
 
 #### `<hypergraph>`
-Require *hypergraph*\_nverts.txt and *hypergraph*\_hyperedges.txt at `hyper-dk-series/data`.
+A name of hypergraph data to read.
+Require to put *hypergraph*\_nverts.txt and *hypergraph*\_hyperedges.txt in `hyper-dk-series/data`.
 
 #### `<d_v>`
 Specify 0, 1, 2, or 2.5.
@@ -73,6 +74,11 @@ Specify 0 or 1.
 
 #### `<num_gen>`
 The number of generatations for randomized hypergraphs.
+
+#### Example
+To generate 5 randomized hypergraphs with (d_v, d_e) = (0, 1) for the hypergraph named `davis-southern-women`, run the following command:
+
+	./hyper_dk_series davis-southern-women 0 1 5
 
 ### Output files
 
