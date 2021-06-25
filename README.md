@@ -1,6 +1,6 @@
 # Hyper dK-series
 Hyper dK-series is a family of randomized reference models for hypergraphs. 
-The hyper dK-series produces randomized hypergraphs that preserve up to the individual node’s degree, node’s degree correlation, node’s redundancy coefficient, and/or the hyperedge’s size of the given hypergraph, depending on the parameter values, *dv* = 0, 1, 2, or 2.5 and *de* = 0 or 1.
+The hyper dK-series produces randomized hypergraphs that preserve up to the individual node’s degree, node’s degree correlation, node’s redundancy coefficient, and/or the hyperedge’s size of the given hypergraph, depending on the parameter values *dv* = 0, 1, 2, or 2.5 and *de* = 0 or 1.
 
 ## Requirements
 Require gcc version 4.2.1 or later.
@@ -21,7 +21,7 @@ The structure of the directory will be as follows:
 	├ rand_hypergraph
 	└ src
 
-If you find `hyper_dk_series` at `hyper-dk-series/bin`, the build has been successfully completed.
+If you find `hyper_dk_series` in `hyper-dk-series/bin`, the build has been successfully completed.
 
 ## Usage
 
@@ -33,13 +33,13 @@ There is one integer per line.
 These file formats follow the formats of [Benson's datasets](https://github.com/arbenson/ScHoLP-Data).
 
 #### *hypergraph*\_nverts.txt
-Write the number of nodes contained in each hyperedge of the original hypergraph on each line of this file.
+Write the number of nodes contained in each hyperedge on each line of this file.
 
 #### *hypergraph*\_hyperedges.txt
 Write a contiguous list of the nodes comprising the hyperedges, where the ordering of the hyperedges is the same as in *hypergraph*\_nverts.txt.
 
 #### Example
-Let's consider a hypergraph, named `example-hypergraph`, that consists of a set of nodes V = {1, 2, 3} and a set of hyperedges E = {(1, 2), (1, 2, 3)}. 
+Let's consider a hypergraph, named `example-hypergraph`, that consists of a set of nodes V = {1, 2, 3} and a set of hyperedges E = {{1, 2}, {1, 2, 3}}. 
 To read the hypergraph `example-hypergraph`, put the following two files in `hyper-dk-series/data`:
 
 example-hypergraph_nverts.txt
@@ -74,15 +74,15 @@ Specify 0, 1, 2, or 2.5.
 Specify 0 or 1.
 
 #### `<num_gen>`
-The number of generatations for randomized hypergraphs.
+Specify the number of generatations for randomized hypergraphs.
 
 #### Example
-To generate 5 randomized hypergraphs with (*dv*, *de*) = (0, 1) for the hypergraph named `davis-southern-women`, run the following command:
+To generate 3 randomized hypergraphs with (*dv*, *de*) = (0, 1) for the hypergraph named `davis-southern-women`, run the following command:
 
 	./hyper_dk_series davis-southern-women 0 1 3
 
 ### Output files
-For the n-th (n=1, ..., *num_gen*) randomized hypergraph with (*dv*, *de*), *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt will be generated in `hyper-dk-series/rand_hypergraph`.
+For the n-th (n=1, ..., *num_gen*) randomized hypergraph with given (*dv*, *de*), *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt will be generated in `hyper-dk-series/rand_hypergraph`.
 
 For example, if one runs the following command, 
 
