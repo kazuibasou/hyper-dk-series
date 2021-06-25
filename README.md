@@ -81,7 +81,7 @@ To generate 5 randomized hypergraphs with (d_v, d_e) = (0, 1) for the hypergraph
 	./hyper_dk_series davis-southern-women 0 1 3
 
 ### Output files
-For the n-th (n=1, ..., *num_gen*) randomized hypergraph with (*d_v*, *d_e*), *hypergraph*\_d_v_*d_v*\_d_e_*d_e*\_n_*n*\_nverts.txt and *hypergraph*\_d_v_*d_v*\_d_e_*d_e*\_n_*n*\_hyperedges.txt are generated in `hyper-dk-series / rand_hypergraph`.
+For the n-th (n=1, ..., *num_gen*) randomized hypergraph with (*d_v*, *d_e*), *hypergraph*\_dv_*d_v*\_d_e_*de*\_n_*n*\_nverts.txt and *hypergraph*\_dv_*d_v*\_de_*d_e*\_n_*n*\_hyperedges.txt are generated in `hyper-dk-series/rand_hypergraph`.
 
 ## Reference
 
