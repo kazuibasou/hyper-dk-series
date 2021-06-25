@@ -5,12 +5,12 @@ We list the properties to be preserved corresponding to each *dv* and *de* value
 
 |  Parameter value  |  Properties to be preserved  |
 | :---: | :---: |
-|  dv = 0  |  Average degree of the node  |
-|  dv = 1  |  Degree of each node  |
-|  dv = 2  |  Pairwise joint degree distribution of the node  |
-|  dv = 2.5  |  Degree-dependent redundancy coefficient of the node  |
-|  de = 0  |  Average size of the hyperedge  |
-|  de = 1 |  Size of each hyperedge  |
+|  *dv* = 0  |  Average degree of the node  |
+|  *dv* = 1  |  Degree of each node  |
+|  *dv* = 2  |  Pairwise joint degree distribution of the node  |
+|  *dv* = 2.5  |  Degree-dependent redundancy coefficient of the node  |
+|  *de* = 0  |  Average size of the hyperedge  |
+|  *de* = 1 |  Size of each hyperedge  |
 
 ## Requirements
 Require gcc version 4.2.1 or later.
