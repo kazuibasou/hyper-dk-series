@@ -12,7 +12,7 @@ int write_hypergraph(const char *graphname, const std::string d_v, const std::st
 	const char *dir = "../rand_hypergraph/";
 
 	FILE *f1;
-	std::string f1path = std::string(dir) + graphname + "_d_v_" + d_v + "_d_e_" + d_e + "_n_" + std::to_string(k) + "_nverts.txt";
+	std::string f1path = std::string(dir) + graphname + "_" + d_v + "_" + d_e + "_" + std::to_string(k) + "_nverts.txt";
 	f1 = fopen(f1path.c_str(), "w");
 	if(f1 == NULL) {
 		printf("Error: Could not open file named %s_nverts.txt.\n", graphname);
@@ -26,7 +26,7 @@ int write_hypergraph(const char *graphname, const std::string d_v, const std::st
 	fclose(f1);
 
 	FILE *f2;
-	std::string f2path = std::string(dir) + graphname + "_d_v_" + d_v + "_d_e_" + d_e + "_n_" + std::to_string(k) + "_hyperedges.txt";
+	std::string f2path = std::string(dir) + graphname + "_" + d_v + "_" + d_e + "_" + std::to_string(k) + "_hyperedges.txt";
 	f2 = fopen(f2path.c_str(), "w");
 	if(f2 == NULL) {
 		printf("Error: Could not open file named %s_hyperedges.txt.\n", graphname);
@@ -321,7 +321,7 @@ int main(int argc,char *argv[]){
 		for(int k=1; k<=num_gen; ++k){
 			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
 			HyperGraph rand_G = randomizing_d_v_two_five_d_e_zero(G);
-			write_hypergraph(graphname, "2_5", d_e, k, rand_G);
+			write_hypergraph(graphname, d_v, d_e, k, rand_G);
 		}
 	}
 	else if(d_v == "0" && d_e == "1"){
@@ -349,7 +349,7 @@ int main(int argc,char *argv[]){
 		for(int k=1; k<=num_gen; ++k){
 			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
 			HyperGraph rand_G = randomizing_d_v_two_five_d_e_one(G);
-			write_hypergraph(graphname, "2_5", d_e, k, rand_G);
+			write_hypergraph(graphname, d_v, d_e, k, rand_G);
 		}
 	}
 	else{
