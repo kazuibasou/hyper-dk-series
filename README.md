@@ -37,6 +37,9 @@ Write the number of nodes contained in each hyperedge of the original hypergraph
 #### *hypergraph*\_hyperedges.txt
 Write a contiguous list of the nodes comprising the hyperedges, where the ordering of the hyperedges is the same as in *hypergraph*\_nverts.txt.
 
+#### Example
+Let us consider a hypergraph that consists of a set of nodes V = {1, 2, 3} and a set of hyperedges E = {(1, 2), (1, 2, 3)}. 
+
 ### Randomizing input hypergraph
 
 Execute the following command at  `hyper-dk-series/bin`.
