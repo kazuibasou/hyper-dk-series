@@ -26,15 +26,15 @@ If you find `hyper_dk_series` at `hyper-dk-series/bin`, the build has been succe
 
 ### Input files
 
-Require to put two files, `*hypergraph*\_nverts.txt` and `*hypergraph*\_hyperedges.txt`, at `hyper-dk-series/data`, where *hypergraph* indicates a name of hypergraph data to read.
+Require to put two files, *hypergraph*\_nverts.txt and *hypergraph*\_hyperedges.txt, at `hyper-dk-series/data`, where *hypergraph* indicates a name of hypergraph data to read.
 All two files represent a vector of integers. 
 There is one integer per line.
 These file formats follow the formats of [Benson's datasets](https://github.com/arbenson/ScHoLP-Data).
 
-#### `*hypergraph*\_nverts.txt`
+#### *hypergraph*\_nverts.txt
 Write the number of nodes contained in each hyperedge of the original hypergraph on each line of this file.
 
-#### `*hypergraph*\_hyperedges.txt`
+#### *hypergraph*\_hyperedges.txt
 Write a contiguous list of the nodes comprising the hyperedges, where the ordering of the hyperedges is the same as in *hypergraph*\_nverts.txt.
 
 ### Randomizing input hypergraph
