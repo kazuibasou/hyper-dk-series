@@ -81,7 +81,7 @@ To generate 5 randomized hypergraphs with (dv, de) = (0, 1) for the hypergraph n
 	./hyper_dk_series davis-southern-women 0 1 3
 
 ### Output files
-For the n-th (n=1, ..., *num_gen*) randomized hypergraph with (*dv*, *de*), *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt are generated in `hyper-dk-series/rand_hypergraph`.
+For the n-th (n=1, ..., *num_gen*) randomized hypergraph with (*dv*, *de*), *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt will be generated in `hyper-dk-series/rand_hypergraph`.
 
 For example, if one runs the following command, 
 
@@ -100,6 +100,8 @@ davis-southern-women_0_1_2_hyperedges.txt
 davis-southern-women_0_1_3_nverts.txt
 
 davis-southern-women_0_1_3_hyperedges.txt
+
+Then, for example, you can use 1st randomized hypergraph data for your purposes such as research or analysis by reading davis-southern-women_0_1_1_nverts.txt and davis-southern-women_0_1_1_nverts.txt.
 
 ## Reference
 
