@@ -41,12 +41,12 @@ Write a contiguous list of the nodes comprising the hyperedges, where the orderi
 Let's consider a hypergraph, named `example_hypergraph`, that consists of a set of nodes V = {1, 2, 3} and a set of hyperedges E = {(1, 2), (1, 2, 3)}. 
 To read the hypergraph `example_hypergraph`, one puts the following two files at `hyper-dk-series/data`.
 
-```php:example_hypergraph_nverts.txt
+```txt:example_hypergraph_nverts.txt
 2
 3
 ```
 
-```php:example_hypergraph_hyperedges.txt
+```txt:example_hypergraph_hyperedges.txt
 1
 2
 1
