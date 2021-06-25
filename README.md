@@ -1,16 +1,6 @@
 # Hyper dK-series
 Hyper dK-series is a family of randomized reference models for hypergraphs. 
-The hyper dK-series produces randomized hypergraphs that preserve up to the individual node’s degree, node’s degree correlation, node’s redundancy coefficient, and/or the hyperedge’s size of the given hypergraph, depending on the parameter values, *dv* and *de*.
-We list the properties to be preserved corresponding to each *dv* and *de* value in the following table.
-
-|  Parameter value  |  Properties to be preserved  |
-| :---: | :---: |
-|  *dv* = 0  |  Average degree of the node  |
-|  *dv* = 1  |  Degree of each node  |
-|  *dv* = 2  |  Pairwise joint degree distribution of the node  |
-|  *dv* = 2.5  |  Degree-dependent redundancy coefficient of the node  |
-|  *de* = 0  |  Average size of the hyperedge  |
-|  *de* = 1 |  Size of each hyperedge  |
+The hyper dK-series produces randomized hypergraphs that preserve up to the individual node’s degree, node’s degree correlation, node’s redundancy coefficient, and/or the hyperedge’s size of the given hypergraph, depending on the parameter values, *dv* = 0, 1, 2, or 2.5 and *de* = 0 or 1.
 
 ## Requirements
 Require gcc version 4.2.1 or later.
