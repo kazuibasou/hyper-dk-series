@@ -120,7 +120,7 @@ example-hypergraph_0_1_3_nverts.txt
 example-hypergraph_0_1_3_hyperedges.txt
 
 ### Notes
-- In general, when *d<sub>v</sub>* <= 1, the generation of a randomized hypergraph is fast. When *d<sub>v</sub>* = 2, it takes longer. When *d<sub>v</sub>* = 2.5, it takes even longer time than when *d<sub>v</sub>* = 2. The value of *d<sub>e</sub>* (= 0 or 1) does not much affect the speed.
+- In general, when *d<sub>v</sub>* = 0 or 1, the generation of a randomized hypergraph is fast. When *d<sub>v</sub>* = 2, it takes longer. When *d<sub>v</sub>* = 2.5, it takes even longer time than when *d<sub>v</sub>* = 2. The value of *d<sub>e</sub>* (= 0 or 1) does not much affect the speed.
 
 ## Reference
 
