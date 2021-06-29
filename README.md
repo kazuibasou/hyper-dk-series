@@ -13,7 +13,7 @@ We have confirmed that our code works in the following environments.
 ## Build
 (i) Clone this repository.
 
-(ii) Go to `hyper-dk-series/src` and run the following command:
+(ii) Go to `hyper-dk-series/src/` and run the following command:
 
 	make
 
@@ -25,14 +25,14 @@ This generated the following structure of the directory.
 	├ rand_hypergraph
 	└ src
 
-If you find `hyper_dk_series` in `hyper-dk-series/bin`, the build has been successfully completed.
+If you find `hyper_dk_series/` in `hyper-dk-series/bin/`, the build has been successfully completed.
 
 ## Usage
 
 ### Input files
 
 We need to feed two files, *hypergraph*\_nverts.txt and *hypergraph*\_hyperedges.txt, where *hypergraph* indicates a name the network and is arbitrary. 
-These two files should be placed in `hyper-dk-series/data`.
+These two files should be placed in `hyper-dk-series/data/`.
 In each of the two input files, each line contains one integer.
 The file format follows that of [Austin R. Benson's data sets](https://github.com/arbenson/ScHoLP-Data).
 
@@ -43,8 +43,8 @@ The *i*th line of this file represents the number of nodes contained in the *i*t
 This file contains a contiguous list of the nodes comprising the hyperedges, where the ordering of the hyperedges is the same as in *hypergraph*\_nverts.txt.
 
 #### Example
-Let's consider a hypergraph, named `example-hypergraph,`that consists of a set of nodes V = {1, 2, 3, 4, 5} and a set of hyperedges E = {{1, 2}, {2, 3}, {1, 2, 3}, {1, 2, 3, 4}, {1, 2, 3, 4, 5}}. 
-To read `example-hypergraph,`put the following two files in `hyper-dk-series/data/`:
+Let's consider a hypergraph, named `example-hypergraph`, that consists of a set of nodes V = {1, 2, 3, 4, 5} and a set of hyperedges E = {{1, 2}, {2, 3}, {1, 2, 3}, {1, 2, 3, 4}, {1, 2, 3, 4, 5}}. 
+To read `example-hypergraph`, put the following two files in `hyper-dk-series/data/`:
 
 example-hypergraph_nverts.txt
 ``` text:
@@ -79,33 +79,33 @@ example-hypergraph_hyperedges.txt
 
 Go to `hyper-dk-series/bin/` and run the following command:
 
-	./hyper_dk_series <hypergraph> <dv> <de> <num_gen>
+	./hyper_dk_series <hypergraph> <d_v> <d_e> <num_gen>
 
 #### `<hypergraph>`
 The name of the hypergraph.
 
-#### `<dv>`
+#### `<d_v>`
 The value of *d<sub>v</sub>*, which should be 0, 1, 2, or 2.5.
 
-#### `<de>`
+#### `<d_e>`
 The value of *d<sub>e</sub>*, which should be 0 or 1.
 
 #### `<num_gen>`
 The number of hypergraphs to be generated.
 
 #### Example
-To generate three randomized hypergraphs with (*d<sub>v</sub>*, *d<sub>e</sub>*) = (0, 1) for the hypergraph named `example-hypergraph,`run the following command:
+To generate three randomized hypergraphs with (*d<sub>v</sub>*, *d<sub>e</sub>*) = (0, 1) for the hypergraph named `example-hypergraph`, run the following command:
 
 	./hyper_dk_series example-hypergraph 0 1 3
 
 ### Output files
-For the n-th (n=1, ..., *num_gen*) randomized hypergraph that has been generated, *hypergraph*\_*d<sub>v</sub>*\_*d<sub>e</sub>*\_*n*\_nverts.txt and *hypergraph*\_*d<sub>v</sub>*\_*d<sub>e</sub>*\_*n*\_hyperedges.txt will be created in `hyper-dk-series/rand_hypergraph/.`
+For the n-th (n=1, ..., *num_gen*) randomized hypergraph that has been generated, *hypergraph*\_*d<sub>v</sub>*\_*d<sub>e</sub>*\_*n*\_nverts.txt and *hypergraph*\_*d<sub>v</sub>*\_*d<sub>e</sub>*\_*n*\_hyperedges.txt will be created in `hyper-dk-series/rand_hypergraph/`.
 
 For example, if one runs  
 
 	./hyper_dk_series example-hypergraph 0 1 3
 
-the following six files will be stored in `hyper-dk-series/rand_hypergraph:` 
+the following six files will be stored in `hyper-dk-series/rand_hypergraph/`: 
 
 example-hypergraph_0_1_1_nverts.txt
 
