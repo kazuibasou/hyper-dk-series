@@ -25,7 +25,7 @@ This generated the following structure of the directory.
 	├ rand_hypergraph/
 	└ src/
 
-If you find `hyper_dk_series/` in `hyper-dk-series/bin/`, the build has been successfully completed.
+If you find `hyper_dk_series` in `hyper-dk-series/bin/`, the build has been successfully completed.
 
 ## Usage
 
