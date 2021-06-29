@@ -19,11 +19,11 @@ We have confirmed that our code works in the following environments.
 
 This generated the following structure of the directory.
 
-	hyper-dk-series
-	├ bin
-	├ data
-	├ rand_hypergraph
-	└ src
+	hyper-dk-series/
+	├ bin/
+	├ data/
+	├ rand_hypergraph/
+	└ src/
 
 If you find `hyper_dk_series/` in `hyper-dk-series/bin/`, the build has been successfully completed.
 
@@ -37,7 +37,7 @@ In each of the two input files, each line contains one integer.
 The file format follows that of [Austin R. Benson's data sets](https://github.com/arbenson/ScHoLP-Data).
 
 #### *hypergraph*\_nverts.txt
-The *i*th line of this file represents the number of nodes contained in the *i*th hyperedge.
+The *i* th line of this file represents the number of nodes contained in the *i* th hyperedge.
 
 #### *hypergraph*\_hyperedges.txt
 This file contains a contiguous list of the nodes comprising the hyperedges, where the ordering of the hyperedges is the same as in *hypergraph*\_nverts.txt.
@@ -79,15 +79,15 @@ example-hypergraph_hyperedges.txt
 
 Go to `hyper-dk-series/bin/` and run the following command:
 
-	./hyper_dk_series <hypergraph> <d_v> <d_e> <num_gen>
+	./hyper_dk_series <hypergraph> <*d<sub>v</sub>*> <*d<sub>e</sub>*> <num_gen>
 
 #### `<hypergraph>`
 The name of the hypergraph.
 
-#### `<d_v>`
+#### `<dv>`
 The value of *d<sub>v</sub>*, which should be 0, 1, 2, or 2.5.
 
-#### `<d_e>`
+#### `<de>`
 The value of *d<sub>e</sub>*, which should be 0 or 1.
 
 #### `<num_gen>`
