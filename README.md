@@ -79,7 +79,7 @@ example-hypergraph_hyperedges.txt
 
 Go to `hyper-dk-series/bin/` and run the following command:
 
-	./hyper_dk_series <hypergraph> <*d<sub>v</sub>*> <*d<sub>e</sub>*> <num_gen>
+	./hyper_dk_series <hypergraph> <dv> <de> <num_gen>
 
 #### `<hypergraph>`
 The name of the hypergraph.
@@ -99,7 +99,7 @@ To generate three randomized hypergraphs with (*d<sub>v</sub>*, *d<sub>e</sub>*)
 	./hyper_dk_series example-hypergraph 0 1 3
 
 ### Output files
-For the n-th (n=1, ..., *num_gen*) randomized hypergraph that has been generated, *hypergraph*\_*d<sub>v</sub>*\_*d<sub>e</sub>*\_*n*\_nverts.txt and *hypergraph*\_*d<sub>v</sub>*\_*d<sub>e</sub>*\_*n*\_hyperedges.txt will be created in `hyper-dk-series/rand_hypergraph/`.
+For the n-th (n=1, ..., *num_gen*) randomized hypergraph that has been generated, *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt will be created in `hyper-dk-series/rand_hypergraph/`.
 
 For example, if one runs  
 
