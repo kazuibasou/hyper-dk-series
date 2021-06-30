@@ -13,7 +13,13 @@ We have confirmed that our code works in the following environments.
 ## Build
 (i) Clone this repository.
 
-(ii) Go to `hyper-dk-series/src/` and run the following command:
+	git clone git@github.com:kazuibasou/hyper-dk-series.git
+
+(ii) Go to `hyper-dk-series/src/`:
+
+	cd hyper-dk-series/src
+
+(iii) Run the make command:
 
 	make
 
@@ -81,6 +87,8 @@ Go to `hyper-dk-series/bin/` and run the following command:
 
 	./hyper_dk_series <hypergraph> <dv> <de> <num_gen>
 
+Three arguments are as follows.
+
 #### `<hypergraph>`
 The name of the hypergraph.
 
@@ -94,12 +102,12 @@ The value of *d<sub>e</sub>*, which should be 0 or 1.
 The number of hypergraphs to be generated.
 
 #### Example
-To generate three randomized hypergraphs with (*d<sub>v</sub>*, *d<sub>e</sub>*) = (0, 1) for the hypergraph named `example-hypergraph`, run the following command:
+To generate three randomized hypergraphs with (*d<sub>v</sub>*, *d<sub>e</sub>*) = (0, 1) for the hypergraph named `example-hypergraph`, run the following command at `hyper-dk-series/bin/`:
 
 	./hyper_dk_series example-hypergraph 0 1 3
 
 ### Output files
-For the n-th (n=1, ..., *num_gen*) randomized hypergraph that has been generated, *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt will be created in `hyper-dk-series/rand_hypergraph/`.
+For the n-th (n=1, ..., *num_gen*) randomized hypergraph that has been generated, *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt will be created in the folder `hyper-dk-series/rand_hypergraph/`.
 
 For example, if one runs  
 
@@ -134,4 +142,4 @@ This source code is released under the MIT License, see LICENSE.txt.
 - Kazuki Nakajima (https://kazuibasou.github.io/index_en.html)
 - nakajima.k.an[at]m.titech.ac.jp
 
-(Last update: 2021/06/29)
+(Last update: 2021/06/30)
