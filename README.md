@@ -1,5 +1,5 @@
 # Hyper dK-series
-Hyper dK-series is a family of randomized reference models for hypergraphs. 
+Hyper dK-series is a family of randomization methods for hypergraphs. 
 The hyper dK-series produces randomized hypergraphs that preserve up to the individual node’s degree, node’s degree correlation, node’s redundancy coefficient, and/or the hyperedge’s size of the given hypergraph, depending on the parameter values *d<sub>v</sub>* = 0, 1, 2, or 2.5 and *d<sub>e</sub>* = 0 or 1.
 
 ## Requirements
@@ -11,7 +11,7 @@ We have confirmed that our code works in the following environments.
 - Ubuntu 16.04.3 LTS
 
 ## Build
-(i) Clone this repository.
+(i) Clone this repository:
 
 	git clone git@github.com:kazuibasou/hyper-dk-series.git
 
@@ -23,7 +23,7 @@ We have confirmed that our code works in the following environments.
 
 	make
 
-This generated the following structure of the directory.
+This generates the following structure of the directory.
 
 	hyper-dk-series/
 	├ bin/
@@ -49,8 +49,8 @@ The *i* th line of this file represents the number of nodes contained in the *i*
 This file contains a contiguous list of the nodes comprising the hyperedges, where the ordering of the hyperedges is the same as in *hypergraph*\_nverts.txt.
 
 #### Example
-Let's consider a hypergraph, named `example-hypergraph`, that consists of a set of nodes V = {1, 2, 3, 4, 5} and a set of hyperedges E = {{1, 2}, {2, 3}, {1, 2, 3}, {1, 2, 3, 4}, {1, 2, 3, 4, 5}}. 
-To read `example-hypergraph`, put the following two files in `hyper-dk-series/data/`:
+Let's consider a hypergraph, named `example-hypergraph`, that consists of a set of nodes *V* = {1, 2, 3, 4, 5} and a set of hyperedges *E* = {{1, 2}, {2, 3}, {1, 2, 3}, {1, 2, 3, 4}, {1, 2, 3, 4, 5}}. 
+Then, the two input files are as follows:
 
 example-hypergraph_nverts.txt
 ``` text:
@@ -87,7 +87,7 @@ Go to `hyper-dk-series/bin/` and run the following command:
 
 	./hyper_dk_series <hypergraph> <dv> <de> <num_gen>
 
-Three arguments are as follows.
+The four arguments are as follows.
 
 #### `<hypergraph>`
 The name of the hypergraph.
@@ -102,12 +102,12 @@ The value of *d<sub>e</sub>*, which should be 0 or 1.
 The number of hypergraphs to be generated.
 
 #### Example
-To generate three randomized hypergraphs with (*d<sub>v</sub>*, *d<sub>e</sub>*) = (0, 1) for the hypergraph named `example-hypergraph`, run the following command at `hyper-dk-series/bin/`:
+To generate three randomized hypergraphs with (*d<sub>v</sub>*, *d<sub>e</sub>*) = (0, 1) for the hypergraph named `example-hypergraph`, go to `hyper-dk-series/bin/` and run the following command:
 
 	./hyper_dk_series example-hypergraph 0 1 3
 
 ### Output files
-For the n-th (n=1, ..., *num_gen*) randomized hypergraph that has been generated, *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt will be created in the folder `hyper-dk-series/rand_hypergraph/`.
+The *n* th (*n*=1, ..., *num_gen*) randomized hypergraph, i.e., *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt will be created in the folder `hyper-dk-series/rand_hypergraph/`.
 
 For example, if one runs  
 
@@ -128,7 +128,7 @@ example-hypergraph_0_1_3_nverts.txt
 example-hypergraph_0_1_3_hyperedges.txt
 
 ### Notes
-- In general, when *d<sub>v</sub>* = 0 or 1, the generation of a randomized hypergraph is fast. When *d<sub>v</sub>* = 2, it takes longer. When *d<sub>v</sub>* = 2.5, it takes even longer time than when *d<sub>v</sub>* = 2. The value of *d<sub>e</sub>* (= 0 or 1) does not much affect the speed.
+- In general, when *d<sub>v</sub>* = 0 or 1, the code runs fast. When *d<sub>v</sub>* = 2, it takes longer. When *d<sub>v</sub>* = 2.5, it takes even longer than when *d<sub>v</sub>* = 2. The value of *d<sub>e</sub>* (= 0 or 1) does not much affect the speed.
 
 ## Reference
 
