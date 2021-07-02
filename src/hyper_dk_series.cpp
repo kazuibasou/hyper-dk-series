@@ -2,6 +2,7 @@
 #include <random>
 #include <unordered_map>
 #include <algorithm>
+#include <pybind11/pybind11.h>
 #include "basic_function.h"
 #include "hypergraph.h"
 #include "rewiring.h"
@@ -282,81 +283,14 @@ HyperGraph randomizing_d_v_two_five_d_e_one(HyperGraph G){
 	return rand_G;
 }
 
-int main(int argc,char *argv[]){
-	if(argc != 5){
-		printf("Please input following:\n");
-		printf("./hyper_dk_series (name of hypergraph) (value of d_v) (value of d_e) (number of generation)\n");
-		exit(0);
-	}
-	const char *graphname = argv[1];
-	const std::string d_v = argv[2];
-	const std::string d_e = argv[3];
-	const int num_gen = std::stoi(argv[4]);
-
-	HyperGraph G;
-	G.read_hypergraph(graphname);
-
-	if(d_v == "0" && d_e == "0"){
-		for(int k=1; k<=num_gen; ++k){
-			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
-			HyperGraph rand_G = randomizing_d_v_zero_d_e_zero(G);
-			write_hypergraph(graphname, d_v, d_e, k, rand_G);
-		}
-	}
-	else if(d_v == "1" && d_e == "0"){
-		for(int k=1; k<=num_gen; ++k){
-			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
-			HyperGraph rand_G = randomizing_d_v_one_d_e_zero(G);
-			write_hypergraph(graphname, d_v, d_e, k, rand_G);
-		}
-	}
-	else if(d_v == "2" && d_e == "0"){
-		for(int k=1; k<=num_gen; ++k){
-			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
-			HyperGraph rand_G = randomizing_d_v_two_d_e_zero(G);
-			write_hypergraph(graphname, d_v, d_e, k, rand_G);
-		}
-	}
-	else if(d_v == "2.5" && d_e == "0"){
-		for(int k=1; k<=num_gen; ++k){
-			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
-			HyperGraph rand_G = randomizing_d_v_two_five_d_e_zero(G);
-			write_hypergraph(graphname, d_v, d_e, k, rand_G);
-		}
-	}
-	else if(d_v == "0" && d_e == "1"){
-		for(int k=1; k<=num_gen; ++k){
-			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
-			HyperGraph rand_G = randomizing_d_v_zero_d_e_one(G);
-			write_hypergraph(graphname, d_v, d_e, k, rand_G);
-		}
-	}
-	else if(d_v == "1" && d_e == "1"){
-		for(int k=1; k<=num_gen; ++k){
-			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
-			HyperGraph rand_G = randomizing_d_v_one_d_e_one(G);
-			write_hypergraph(graphname, d_v, d_e, k, rand_G);
-		}
-	}
-	else if(d_v == "2" && d_e == "1"){
-		for(int k=1; k<=num_gen; ++k){
-			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
-			HyperGraph rand_G = randomizing_d_v_two_d_e_one(G);
-			write_hypergraph(graphname, d_v, d_e, k, rand_G);
-		}
-	}
-	else if(d_v == "2.5" && d_e == "1"){
-		for(int k=1; k<=num_gen; ++k){
-			printf("%d generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n", k, d_v.c_str(), d_e.c_str());
-			HyperGraph rand_G = randomizing_d_v_two_five_d_e_one(G);
-			write_hypergraph(graphname, d_v, d_e, k, rand_G);
-		}
-	}
-	else{
-		printf("Error: Given pair (d_v, d_e) is not defined.\n");
-		printf("The pair (d_v, d_e) should be (0, 0), (1, 0), (2, 0), (2.5, 0), (0, 1), (1, 1), (2, 1), or (2.5, 1).\n");
-		exit(0);
-	}
-
-	return 0;
+PYBIND11_MODULE(hyper_dk_series, m) {
+  m.doc() = "hyper dK-series";
+  m.def("randomizing_d_v_zero_d_e_zero", &randomizing_d_v_zero_d_e_zero, "randomizing with (d_v, d_e)=(0, 0)");
+  m.def("randomizing_d_v_one_d_e_zero", &randomizing_d_v_one_d_e_zero, "randomizing with (d_v, d_e)=(1, 0)");
+  m.def("randomizing_d_v_zero_d_e_one", &randomizing_d_v_zero_d_e_one, "randomizing with (d_v, d_e)=(0, 1)");
+  m.def("randomizing_d_v_one_d_e_one", &randomizing_d_v_one_d_e_one, "randomizing with (d_v, d_e)=(1, 1)");
+  m.def("randomizing_d_v_two_d_e_zero", &randomizing_d_v_two_d_e_zero, "randomizing with (d_v, d_e)=(2, 0)");
+  m.def("randomizing_d_v_two_d_e_one", &randomizing_d_v_two_d_e_one, "randomizing with (d_v, d_e)=(2, 1)");
+  m.def("randomizing_d_v_two_five_d_e_zero", &randomizing_d_v_two_five_d_e_zero, "randomizing with (d_v, d_e)=(2.5, 0)");
+  m.def("randomizing_d_v_two_five_d_e_one", &randomizing_d_v_two_five_d_e_one, "randomizing with (d_v, d_e)=(2.5, 1)");
 }
