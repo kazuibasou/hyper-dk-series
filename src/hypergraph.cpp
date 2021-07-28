@@ -129,7 +129,7 @@ int HyperGraph::read_hypergraph(const char *graphname){
 
 	printf("The given hypergraph named %s was successfully read.\n", graphname);
 	printf("Number of nodes: %d\n", N);
-	printf("Number of hyperedges: %d\n\n", M);
+	printf("Number of hyperedges: %d\n", M);
 
 	return 0;
 }
