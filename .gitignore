@@ -37,4 +37,4 @@
 ./cpp/.DS_Store
 ./rand_hypergraph/
 ./cpp/bin/
-./py/__pycache__
+./py/__pycache__/
