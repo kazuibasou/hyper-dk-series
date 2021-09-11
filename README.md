@@ -9,7 +9,8 @@ The C++ code is much faster than the python code.
 # Python
 
 ## Requirements
-Require python version 3.
+Require python version 3.6.
+Probably, our code should successfully work on Python 3 series.
 
 We have confirmed that our code works in the following environments.
 
