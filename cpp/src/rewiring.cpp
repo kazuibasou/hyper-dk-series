@@ -1,46 +1,45 @@
+#include <iostream>
 #include <vector>
 #include <random>
 #include <unordered_map>
 #include <set>
 #include <algorithm>
-#include "basic_function.h"
 #include "hypergraph.h"
 #include "rewiring.h"
 
-HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
+HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph randG){
 
-	printf("Targeting-rewiring process with d_v = 2.\n");
+	printf("Started targeting-rewiring process with d_v = 2.\n");
 
-	G.calc_num_jnt_node_deg();
-	const Matrix<int> target_num_jnt_node_deg = Matrix<int>(G.num_jnt_node_deg);
+	Matrix<int> target_num_jnt_node_deg;
+	calc_num_jnt_node_deg(G, target_num_jnt_node_deg);
 
-	int G_sum = 0;
-	for(int m=0; m<G.M; ++m){
+	int target_sum_num_jnt_node_deg = 0;
+	for(int m:G.E){
 		int s = int(G.vlist[m].size());
-		G_sum += s*(s-1);
+		target_sum_num_jnt_node_deg += s*(s-1);
 	}
-	const int target_sum_num_jnt_node_deg = G_sum;
 
-	rand_G.calc_num_jnt_node_deg();
-	Matrix<int> num_jnt_node_deg = Matrix<int>(rand_G.num_jnt_node_deg);
+	Matrix<int> num_jnt_node_deg;
+	calc_num_jnt_node_deg(randG, num_jnt_node_deg);
 
-	int rand_G_sum = 0;
-	for(int m=0; m<rand_G.M; ++m){
-		int s = int(rand_G.vlist[m].size());
-		rand_G_sum += s*(s-1);
+	int sum_num_jnt_node_deg = 0;
+	for(int m:randG.E){
+		int s = int(randG.vlist[m].size());
+		sum_num_jnt_node_deg += s*(s-1);
 	}
-	const int sum_num_jnt_node_deg = rand_G_sum;
 
-	G.calc_node_degree();
-	rand_G.calc_node_degree();
-	rand_G.calc_edge_size();
+	std::unordered_map<int, int> G_node_degree, randG_node_degree, randG_hyperedge_size;
+	calc_node_degree(G, G_node_degree);
+	calc_node_degree(randG, randG_node_degree);
+	calc_hyperedge_size(randG, randG_hyperedge_size);
 
 	std::set<int> degrees;
-	for(int v=0; v<G.N; ++v){
-		degrees.insert(G.node_degree[v]);
+	for(int v:G.V){
+		degrees.insert(G_node_degree[v]);
 	}
-	for(int v=0; v<rand_G.N; ++v){
-		degrees.insert(rand_G.node_degree[v]);
+	for(int v:randG.V){
+		degrees.insert(randG_node_degree[v]);
 	}
 
 	double dist = 0;
@@ -55,13 +54,13 @@ HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
 	printf("Initial L1 distance between the target and present P_v(k, k'): %lf\n", double(dist)/norm);
 
 	std::vector<std::pair<int,int>> bipartite_edges;
-	for(int v=0; v<rand_G.N; ++v){
-		for(int m:rand_G.elist[v]){
+	for(int v:randG.V){
+		for(int m:randG.elist[v]){
 			bipartite_edges.push_back({v, m});
 		}
 	}
 
-	int B_M = int(bipartite_edges.size());
+	const int B_M = int(bipartite_edges.size());
 
 	std::random_device rd;
   	std::mt19937 mt(rd());
@@ -88,26 +87,26 @@ HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
 			m2 = bipartite_edges[e2].second;
 		}
 
-		k1 = rand_G.node_degree[u];
-		k2 = rand_G.node_degree[v];
+		k1 = randG_node_degree[u];
+		k2 = randG_node_degree[v];
 
 		Matrix<int> num_jnt_node_deg_to_add;
 
-		for(int w:rand_G.vlist[m1]){
-			l = rand_G.node_degree[w];
+		for(int w:randG.vlist[m1]){
+			l = randG_node_degree[w];
 			num_jnt_node_deg_to_add.subtract(k1, l, 1);
 			num_jnt_node_deg_to_add.subtract(l, k1, 1);
 		}
 		num_jnt_node_deg_to_add.add(k1, k1, 2);
 
-		for(int w:rand_G.vlist[m2]){
-			l = rand_G.node_degree[w];
+		for(int w:randG.vlist[m2]){
+			l = randG_node_degree[w];
 			num_jnt_node_deg_to_add.add(k1, l, 1);
 			num_jnt_node_deg_to_add.add(l, k1, 1);
 		}
 
-		for(int w:rand_G.vlist[m2]){
-			l = rand_G.node_degree[w];
+		for(int w:randG.vlist[m2]){
+			l = randG_node_degree[w];
 			num_jnt_node_deg_to_add.subtract(k2, l, 1);
 			num_jnt_node_deg_to_add.subtract(l, k2, 1);
 		}
@@ -115,8 +114,8 @@ HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
 		num_jnt_node_deg_to_add.subtract(k1, k2, 1);
 		num_jnt_node_deg_to_add.subtract(k2, k1, 1);
 
-		for(int w:rand_G.vlist[m1]){
-			l = rand_G.node_degree[w];
+		for(int w:randG.vlist[m1]){
+			l = randG_node_degree[w];
 			num_jnt_node_deg_to_add.add(k2, l, 1);
 			num_jnt_node_deg_to_add.add(l, k2, 1);
 		}
@@ -140,10 +139,10 @@ HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
 			bipartite_edges[e1] = {u, m2};
 			bipartite_edges[e2] = {v, m1};
 
-			rand_G.remove_node_from_hyperedge(u, m1);
-			rand_G.add_node_to_hyperedge(u, m2);
-			rand_G.remove_node_from_hyperedge(v, m2);
-			rand_G.add_node_to_hyperedge(v, m1);
+			remove_node_from_hyperedge(randG, u, m1);
+			add_node_to_hyperedge(randG, u, m2);
+			remove_node_from_hyperedge(randG, v, m2);
+			add_node_to_hyperedge(randG, v, m1);
 
 			for(id1=0; id1<int(num_jnt_node_deg_to_add.id_to_keys.size()); ++id1){
 				k = num_jnt_node_deg_to_add.id_to_keys[id1];
@@ -157,16 +156,16 @@ HyperGraph targeting_rewiring_d_v_two(HyperGraph G, HyperGraph rand_G){
 		}
 	}
 
-	printf("Final L1 distance between target and current P_v(k, k'): %lf\n", double(dist)/norm);
+	printf("Final L1 distance between target and current P_v(k, k'): %lf\n\n", double(dist)/norm);
 
-	return rand_G;
+	return randG;
 }
 
-int update_degree_node_redundancy_coefficient_by_edge_addition(HyperGraph &rand_G, 
-	const int &v, const int &m, const int &k, std::vector<int> &degree_node_num_redun_to_add){
+int update_degree_node_redundancy_coefficient_by_edge_addition(HyperGraph &randG, const int &v, const int &m, 
+	const int &k, const std::unordered_map<int, int> &randG_node_degree, std::vector<int> &degree_node_num_redun_to_add){
 
 	std::unordered_map<int, int> checked;
-	for(int m2:rand_G.elist[v]){
+	for(int m2:randG.elist[v]){
 		checked[m2] = 0;
 	}
 
@@ -174,12 +173,12 @@ int update_degree_node_redundancy_coefficient_by_edge_addition(HyperGraph &rand_
 	std::set<int> s2 = {v};
 	int x, y, l;
 
-	for(int m2: rand_G.elist[v]){
-		if(int(rand_G.vlist[m2].size()) < 2 || m2 == m){continue;}
+	for(int m2: randG.elist[v]){
+		if(int(randG.vlist[m2].size()) < 2 || m2 == m){continue;}
 
 		s1.clear();
 		s3.clear();
-		std::set_intersection(rand_G.vlist[m].begin(), rand_G.vlist[m].end(), rand_G.vlist[m2].begin(), rand_G.vlist[m2].end(), std::inserter(s1, s1.end()));
+		std::set_intersection(randG.vlist[m].begin(), randG.vlist[m].end(), randG.vlist[m2].begin(), randG.vlist[m2].end(), std::inserter(s1, s1.end()));
 		std::set_difference(s1.begin(), s1.end(), s2.begin(), s2.end(), std::inserter(s3, s3.end()));
 		
 		if(int(s3.size()) == 0){continue;}
@@ -192,10 +191,10 @@ int update_degree_node_redundancy_coefficient_by_edge_addition(HyperGraph &rand_
 			s4 = {w};
 			s5.clear();
 			std::set_difference(s1.begin(), s1.end(), s4.begin(), s4.end(), std::inserter(s5, s5.end()));
-			if(s5 == s2 && std::count(rand_G.vlist[m].begin(), rand_G.vlist[m].end(), v) == 1){
-				l = rand_G.node_degree[w];
-				x = std::count(rand_G.elist[w].begin(), rand_G.elist[w].end(), m);
-				y = std::count(rand_G.elist[w].begin(), rand_G.elist[w].end(), m2);
+			if(s5 == s2 && std::count(randG.vlist[m].begin(), randG.vlist[m].end(), v) == 1){
+				l = randG_node_degree.at(w);
+				x = std::count(randG.elist[w].begin(), randG.elist[w].end(), m);
+				y = std::count(randG.elist[w].begin(), randG.elist[w].end(), m2);
 				degree_node_num_redun_to_add[l] += x*y;
 			}
 		}
@@ -205,11 +204,11 @@ int update_degree_node_redundancy_coefficient_by_edge_addition(HyperGraph &rand_
 	return 0;
 }
 
-int update_degree_node_redundancy_coefficient_by_edge_deletion(HyperGraph &rand_G, 
-	const int &v, const int &m, const int &k, std::vector<int> &degree_node_num_redun_to_add){
+int update_degree_node_redundancy_coefficient_by_edge_deletion(HyperGraph &randG, const int &v, const int &m, 
+	const int &k, const std::unordered_map<int, int> &randG_node_degree, std::vector<int> &degree_node_num_redun_to_add){
 
 	std::unordered_map<int, int> checked;
-	for(int m2:rand_G.elist[v]){
+	for(int m2:randG.elist[v]){
 		checked[m2] = 0;
 	}
 
@@ -217,12 +216,12 @@ int update_degree_node_redundancy_coefficient_by_edge_deletion(HyperGraph &rand_
 	std::set<int> s2 = {v};
 	int x, y, l;
 
-	for(int m2: rand_G.elist[v]){
-		if(int(rand_G.vlist[m2].size()) < 2 || m2 == m){continue;}
+	for(int m2: randG.elist[v]){
+		if(int(randG.vlist[m2].size()) < 2 || m2 == m){continue;}
 
 		s1.clear();
 		s3.clear();
-		std::set_intersection(rand_G.vlist[m].begin(), rand_G.vlist[m].end(), rand_G.vlist[m2].begin(), rand_G.vlist[m2].end(), std::inserter(s1, s1.end()));
+		std::set_intersection(randG.vlist[m].begin(), randG.vlist[m].end(), randG.vlist[m2].begin(), randG.vlist[m2].end(), std::inserter(s1, s1.end()));
 		std::set_difference(s1.begin(), s1.end(), s2.begin(), s2.end(), std::inserter(s3, s3.end()));
 		
 		if(int(s3.size()) == 0){continue;}
@@ -236,9 +235,9 @@ int update_degree_node_redundancy_coefficient_by_edge_deletion(HyperGraph &rand_
 			s5.clear();
 			std::set_difference(s1.begin(), s1.end(), s4.begin(), s4.end(), std::inserter(s5, s5.end()));
 			if(int(s5.size()) == 0){
-				l = rand_G.node_degree[w];
-				x = std::count(rand_G.elist[w].begin(), rand_G.elist[w].end(), m);
-				y = std::count(rand_G.elist[w].begin(), rand_G.elist[w].end(), m2);
+				l = randG_node_degree.at(w);
+				x = std::count(randG.elist[w].begin(), randG.elist[w].end(), m);
+				y = std::count(randG.elist[w].begin(), randG.elist[w].end(), m2);
 				degree_node_num_redun_to_add[l] -= x*y;
 			}
 		}
@@ -248,34 +247,37 @@ int update_degree_node_redundancy_coefficient_by_edge_deletion(HyperGraph &rand_
 	return 0;
 }
 
-HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph rand_G){
+HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph randG){
 
-	printf("Targeting-rewiring process with d_v = 2.5.\n");
+	printf("Started targeting-rewiring process with d_v = 2.5.\n");
 
-	G.calc_degree_dependent_node_redundancy_coefficient();
-	std::vector<double> target_degree_node_redun_coeff = std::vector<double>(G.degree_node_redun_coeff);
+	std::vector<double> target_degree_node_redun_coeff;
+	calc_degree_dependent_node_redundancy_coefficient(G, target_degree_node_redun_coeff);
 	
-	rand_G.calc_degree_dependent_node_redundancy_coefficient();
-	std::vector<double> degree_node_redun_coeff = std::vector<double>(rand_G.degree_node_redun_coeff);
+	std::vector<double> degree_node_redun_coeff;
+	calc_degree_dependent_node_redundancy_coefficient(randG, degree_node_redun_coeff);
 
-	const int d_size = G.max_node_deg + 1;
+	int max_node_deg;
+	calc_maximum_node_degree(randG, max_node_deg);
+	int d_size = max_node_deg+1;
 
 	double dist = 0;
 	double norm = 0;
-	for(int k=2; k<d_size; ++k){
+	int k;
+	for(k=2; k<d_size; ++k){
 		dist += std::fabs(target_degree_node_redun_coeff[k] - degree_node_redun_coeff[k]);
 		norm += std::fabs(target_degree_node_redun_coeff[k]);
 	}
 
 	printf("Initial L1 distance between target and present r(k): %lf\n", double(dist)/norm);
 
-	rand_G.calc_node_degree();
-	rand_G.calc_edge_size();
+	std::unordered_map<int, int> randG_node_degree, randG_hyperedge_size;
+	calc_node_degree(randG, randG_node_degree);
+	calc_hyperedge_size(randG, randG_hyperedge_size);
 
 	std::vector<int> N_k(d_size, 0);
-	int k;
-	for(int v=0; v<rand_G.N; ++v){
-		k = rand_G.node_degree[v];
+	for(int v:randG.V){
+		k = randG_node_degree[v];
 		N_k[k] += 1;
 	}
 
@@ -287,8 +289,8 @@ HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph rand_G){
 	}
 
 	std::vector<std::pair<int,int>> bipartite_edges;
-	for(int v=0; v<rand_G.N; ++v){
-		for(int m:rand_G.elist[v]){
+	for(int v:randG.V){
+		for(int m:randG.elist[v]){
 			bipartite_edges.push_back({v, m});
 		}
 	}
@@ -313,8 +315,8 @@ HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph rand_G){
 		m1 = bipartite_edges[e1].second;
 		v = bipartite_edges[e2].first;
 		m2 = bipartite_edges[e2].second;
-		k1 = rand_G.node_degree[u];
-		k2 = rand_G.node_degree[v];
+		k1 = randG_node_degree[u];
+		k2 = randG_node_degree[v];
 		while(u == v || m1 == m2 || k1 != k2){
 			e1 = randB_M(mt);
 			e2 = randB_M(mt);
@@ -322,20 +324,20 @@ HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph rand_G){
 			m1 = bipartite_edges[e1].second;
 			v = bipartite_edges[e2].first;
 			m2 = bipartite_edges[e2].second;
-			k1 = rand_G.node_degree[u];
-			k2 = rand_G.node_degree[v];
+			k1 = randG_node_degree[u];
+			k2 = randG_node_degree[v];
 		}
 
 		degree_node_num_redun_to_add = std::vector<int>(d_size, 0);
 
-		rand_G.remove_node_from_hyperedge(u, m1);
-		update_degree_node_redundancy_coefficient_by_edge_deletion(rand_G, u, m1, k1, degree_node_num_redun_to_add);
-		rand_G.add_node_to_hyperedge(u, m2);
-		update_degree_node_redundancy_coefficient_by_edge_addition(rand_G, u, m2, k1, degree_node_num_redun_to_add);
-		rand_G.remove_node_from_hyperedge(v, m2);
-		update_degree_node_redundancy_coefficient_by_edge_deletion(rand_G, v, m2, k2, degree_node_num_redun_to_add);
-		rand_G.add_node_to_hyperedge(v, m1);
-		update_degree_node_redundancy_coefficient_by_edge_addition(rand_G, v, m1, k2, degree_node_num_redun_to_add);
+		remove_node_from_hyperedge(randG, u, m1);
+		update_degree_node_redundancy_coefficient_by_edge_deletion(randG, u, m1, k1, randG_node_degree, degree_node_num_redun_to_add);
+		add_node_to_hyperedge(randG, u, m2);
+		update_degree_node_redundancy_coefficient_by_edge_addition(randG, u, m2, k1, randG_node_degree, degree_node_num_redun_to_add);
+		remove_node_from_hyperedge(randG, v, m2);
+		update_degree_node_redundancy_coefficient_by_edge_deletion(randG, v, m2, k2, randG_node_degree, degree_node_num_redun_to_add);
+		add_node_to_hyperedge(randG, v, m1);
+		update_degree_node_redundancy_coefficient_by_edge_addition(randG, v, m1, k2, randG_node_degree, degree_node_num_redun_to_add);
 
 		rewired_degree_node_redun_coeff = std::vector<double>(degree_node_redun_coeff);
 		delta_dist = 0;
@@ -353,14 +355,14 @@ HyperGraph targeting_rewiring_d_v_two_five(HyperGraph G, HyperGraph rand_G){
 			dist += delta_dist;
 		}
 		else{
-			rand_G.remove_node_from_hyperedge(u, m2);
-			rand_G.add_node_to_hyperedge(u, m1);
-			rand_G.remove_node_from_hyperedge(v, m1);
-			rand_G.add_node_to_hyperedge(v, m2);
+			remove_node_from_hyperedge(randG, u, m2);
+			add_node_to_hyperedge(randG, u, m1);
+			remove_node_from_hyperedge(randG, v, m1);
+			add_node_to_hyperedge(randG, v, m2);
 		}
 	}
 
-	printf("Final L1 distance between target and present r(k): %lf\n", double(dist)/norm);
+	printf("Final L1 distance between target and present r(k): %lf\n\n", double(dist)/norm);
 
-	return rand_G;
+	return randG;
 }

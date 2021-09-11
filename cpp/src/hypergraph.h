@@ -1,5 +1,18 @@
-#ifndef BASIC_FUNCTION_H
-#define BASIC_FUNCTION_H
+#ifndef HYPERGRAPH_H
+#define HYPERGRAPH_H
+
+class HyperGraph{
+	public:
+		std::vector<int> V;
+		std::vector<int> E;
+		std::unordered_map<int, std::vector<int>> elist;
+		std::unordered_map<int, std::vector<int>> vlist;
+
+		HyperGraph();
+		~HyperGraph();
+
+		int read_hypergraph(const char *hypergraph);
+};
 
 //two-dimensional property (e.g., pairwise joint degree distribution)
 template <typename TYPE> class Matrix{
@@ -127,8 +140,13 @@ int Matrix<TYPE>::subtract(const int k, const int l, const TYPE value){
     return 0;
 }
 
-int generate_rand(const int N);
-
-int random_choice(const std::vector<int> &v);
+int add_node_to_hyperedge(HyperGraph &G, const int &v, const int &m);
+int remove_node_from_hyperedge(HyperGraph &G, const int &v, const int &m);
+int calc_node_degree(HyperGraph &G, std::unordered_map<int, int> &node_degree);
+int calc_maximum_node_degree(HyperGraph &G, int &max_node_deg);
+int calc_num_jnt_node_deg(HyperGraph &G, Matrix<int> &num_jnt_node_deg);
+int calc_node_redundancy_coefficient(HyperGraph &G, std::unordered_map<int, double> &node_redun_coeff);
+int calc_degree_dependent_node_redundancy_coefficient(HyperGraph &G, std::vector<double> &degree_node_redun_coeff);
+int calc_hyperedge_size(HyperGraph &G, std::unordered_map<int, int> &hyperedge_size);
 
 #endif

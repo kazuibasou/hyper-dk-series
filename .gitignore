@@ -31,8 +31,10 @@
 *.out
 *.app
 
+# Others
 .DS_Store
 ./data/.DS_Store
-./src/.DS_Store
+./cpp/.DS_Store
 ./rand_hypergraph
 ./bin
+./py/__pycache__
