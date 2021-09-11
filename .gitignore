@@ -35,6 +35,6 @@
 .DS_Store
 ./data/.DS_Store
 ./cpp/.DS_Store
-./rand_hypergraph
-./bin
+./rand_hypergraph/
+./cpp/bin/
 ./py/__pycache__
