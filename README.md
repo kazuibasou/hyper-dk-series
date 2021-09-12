@@ -10,7 +10,7 @@ The C++ code is much faster than the python code.
 
 ## Requirements
 Require python version 3.6.
-Probably, our code should successfully work on Python 3 series.
+Our code should successfully work on Python 3 series.
 
 We have confirmed that our code works in the following environments.
 
@@ -116,7 +116,7 @@ example-hypergraph_0_1_3_nverts.txt
 example-hypergraph_0_1_3_hyperedges.txt
 
 ### HyperGraph class
-We also introduce how to use the HyperGraph class. 
+We introduce how to use the HyperGraph class. 
 We can perform a basic analysis of a hypergraph by using this class.
 
 #### Initialization
@@ -140,7 +140,7 @@ Then, we initialize *G* as follows:
 	>>> G.E = [[1, 2], [2, 3], [1, 2, 3], [1, 2, 3, 4], [1, 2, 3, 4, 5]]
 	>>> G.elist = {1: [0, 2, 3, 4], 2: [0, 1, 2, 3, 4], 3: [1, 2, 3, 4], 4: [3, 4], 5: [4]}
 
-Note that G.elist[1] = [0, 2, 3, 4] implies that node 1 belongs to hyperedges G.E[0], G.E[2], G.E[3], and G.E[4].
+For example, G.elist[1] = [0, 2, 3, 4] implies that node 1 belongs to hyperedges G.E[0], G.E[2], G.E[3], and G.E[4].
 
 Another option is to read a hypergraph from files in `hyper-dk-series/data/`.
 For example, if we want to read a hypergraph, named `example-hypergraph`, we just run the following commands:
