@@ -8,7 +8,7 @@ class HyperGraph():
     def __init__(self):
         self.V = []
         self.E = []
-        self.elist = defaultdict(list)
+        self.elist = {}
 
     def read_hypergraph(self, graph_name):
         f1_path = "../data/" + str(graph_name) + "_nverts.txt"
@@ -32,9 +32,10 @@ class HyperGraph():
 
             self.E.append(e)
             for v in e:
-                self.elist[v].append(e_i)
                 if v not in self.V:
                     self.V.append(v)
+                    self.elist[v] = []
+                self.elist[v].append(e_i)
             c += nv
             e_i += 1
 

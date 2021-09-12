@@ -145,7 +145,7 @@ For example, G.elist[1] = [0, 2, 3, 4] implies that node 1 belongs to hyperedges
 Another option is to read a hypergraph from files in `hyper-dk-series/data/`.
 For example, if we want to read a hypergraph, named `example-hypergraph`, we just run the following commands:
 
-	>>> import hypergraph                     
+	>>> import hypergraph
 	>>> hypergraph_name = "example-hypergraph"
 	>>> G = hypergraph.HyperGraph()
 	>>> G.read_hypergraph(hypergraph_name)
@@ -157,7 +157,7 @@ Then, we should obtain
 	>>> print(G.E)
 	[[1, 2], [2, 3], [1, 2, 3], [1, 2, 3, 4], [1, 2, 3, 4, 5]]
 	>>> print(G.elist)
-	defaultdict(<class 'list'>, {1: [0, 2, 3, 4], 2: [0, 1, 2, 3, 4], 3: [1, 2, 3, 4], 4: [3, 4], 5: [4]})
+	{1: [0, 2, 3, 4], 2: [0, 1, 2, 3, 4], 3: [1, 2, 3, 4], 4: [3, 4], 5: [4]}
 
 # C++
 
