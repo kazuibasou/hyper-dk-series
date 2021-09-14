@@ -207,7 +207,7 @@ Note that the key in the dictionary is the node's index.
 
 Return the number of hyperedges that nodes with degree k and nodes with degree k' share.
 
-See Ref. [1] for the detailed definition.
+See Section 2.2 in Ref. [1] for the detailed definition.
 
 Example:
 
@@ -223,7 +223,7 @@ Note that the key in the dictionary is a pair of node's degrees.
 
 Return the redundancy coefficient of each node.
 
-See Ref. [1] for the detailed definition.
+See Section 2.2 in Ref. [1] for the detailed definition.
 
 Example:
 
@@ -239,7 +239,7 @@ Note that the key in the dictionary is the node's index.
 
 Return the degree-dependent redundancy coefficient of the node (i.e., the average of the redundancy coefficient over the nodes with degree k).
 
-See Ref. [1] for the detailed definition.
+See Section 2.2 in Ref. [1] for the detailed definition.
 
 Example:
 
@@ -359,4 +359,4 @@ This source code is released under the MIT License, see LICENSE.txt.
 - Kazuki Nakajima (https://kazuibasou.github.io/index_en.html)
 - nakajima.k.an[at]m.titech.ac.jp
 
-(Last update: 2021/09/11)
+(Last update: 2021/09/14)
