@@ -217,7 +217,7 @@ Example:
 	>>> njnd[1][2]
 	1
 
-Note that the key in the dictionary is the node's degree.
+Note that the key in the dictionary is a pair of node's degrees.
 
 ### hypergraph.HyperGraph.node_redundancy_coefficient()
 
