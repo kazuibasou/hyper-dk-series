@@ -144,7 +144,7 @@ In the following, we introduce functions in the HyperGraph class for a basic ana
 
 ### hypergraph.HyperGraph.read_hypergraph(hypergraph_name)
 
-Read a hypergraph named `hypergraph.read_hypergraph(hypergraph_name)` from the corresponding files in `hyper-dk-series/data/`.
+Read a hypergraph named `hypergraph_name` from the corresponding files in `hyper-dk-series/data/`.
 
 For example, if we want to read a hypergraph, named `example-hypergraph`, we just run the following commands:
 
