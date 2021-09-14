@@ -202,12 +202,15 @@ def targeting_rewiring_d_v_two_five(G, randG):
 	target_degree_node_redun_coeff = G.degree_dependent_node_redundancy_coefficient()
 	degree_node_redun_coeff = randG.degree_dependent_node_redundancy_coefficient()
 
-	max_node_deg = randG.maximum_node_degree()
-	d_size = max_node_deg + 1
+	node_degree_set = set()
+	for v in G.V:
+		k = len(G.elist[v])
+		if k > 1:
+			node_degree_set.add(k)
 
 	dist = 0
 	norm = 0
-	for k in range(2, d_size):
+	for k in node_degree_set:
 		dist += math.fabs(target_degree_node_redun_coeff[k] - degree_node_redun_coeff[k])
 		norm += math.fabs(target_degree_node_redun_coeff[k])
 
@@ -216,13 +219,14 @@ def targeting_rewiring_d_v_two_five(G, randG):
 	randG_node_degree = randG.node_degree()
 	randG_hyperedge_size = randG.hyperedge_size()
 
-	N_k = [0]*d_size
+	N_k = {k: 0 for k in node_degree_set}
 	for v in randG.V:
 		k = randG_node_degree[v]
-		N_k[k] += 1
+		if k > 1:
+			N_k[k] += 1
 
-	const_coeff = [0]*d_size
-	for k in range(2, d_size):
+	const_coeff = {k: 0 for k in node_degree_set}
+	for k in node_degree_set:
 		if N_k[k] > 0:
 			const_coeff[k] = float(2)/(k*(k-1))
 			const_coeff[k] = float(const_coeff[k])/N_k[k]
@@ -234,8 +238,8 @@ def targeting_rewiring_d_v_two_five(G, randG):
 
 	B_M = len(bipartite_edges)
 
-	rewired_degree_node_redun_coeff = [0]*d_size
-	degree_node_num_redun_to_add = [0]*d_size
+	rewired_degree_node_redun_coeff = {k: 0 for k in node_degree_set}
+	degree_node_num_redun_to_add = {k: 0 for k in node_degree_set}
 
 	R = 500*B_M
 
@@ -255,7 +259,7 @@ def targeting_rewiring_d_v_two_five(G, randG):
 			k1 = randG_node_degree[u]
 			k2 = randG_node_degree[v]
 
-		degree_node_num_redun_to_add = [0]*d_size
+		degree_node_num_redun_to_add = {k: 0 for k in node_degree_set}
 
 		randG.remove_node_from_hyperedge(u, e_i)
 		degree_node_num_redun_to_add = update_degree_node_redundancy_coefficient_by_edge_deletion(randG, u, e_i, k1, randG_node_degree)
@@ -268,7 +272,7 @@ def targeting_rewiring_d_v_two_five(G, randG):
 
 		delta_dist = 0
 
-		for k in range(2, d_size):
+		for k in node_degree_set:
 			if degree_node_num_redun_to_add[k] != 0:
 				new_k = math.fabs(target_degree_node_redun_coeff[k] - float(degree_node_redun_coeff[k] + degree_node_num_redun_to_add[k]*const_coeff[k]))
 				old_k = math.fabs(target_degree_node_redun_coeff[k] - degree_node_redun_coeff[k])
@@ -280,7 +284,7 @@ def targeting_rewiring_d_v_two_five(G, randG):
 			
 			dist += delta_dist
 			
-			for k in range(2, d_size):
+			for k in node_degree_set:
 				if degree_node_num_redun_to_add[k] != 0:
 					degree_node_redun_coeff[k] += float(degree_node_num_redun_to_add[k]*const_coeff[k])
 		else:

@@ -7,6 +7,8 @@ import os
 os.makedirs("../rand_hypergraph", exist_ok=True)
 
 def write_hypergraph(hypergraph_name, d_v, d_e, k, randG):
+	# Write files for a randomized hypergraph named randG. 
+
 	f1_path = "../rand_hypergraph/" + str(hypergraph_name) + "_" + str(d_v) + "_" + str(d_e) + "_" + str(k) + "_nverts.txt"
 	f1 = open(f1_path, 'w')
 
@@ -37,6 +39,7 @@ if __name__ == "__main__":
 
 	G = hypergraph.HyperGraph()
 	G.read_hypergraph(hypergraph_name)
+	print()
 
 	if d_v == "0" and d_e == "0":
 		for k in range(1, num_gen+1):

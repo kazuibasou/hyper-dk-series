@@ -3,6 +3,8 @@ import rewiring
 import random
 
 def randomizing_d_v_zero_d_e_zero(G):
+	# Given a hypergraph, return a randomized hypergraph with (d_v, d_e) = (0, 0).
+
 	B_M = 0
 	for v in G.V:
 		B_M += len(G.elist[v])
@@ -23,6 +25,8 @@ def randomizing_d_v_zero_d_e_zero(G):
 	return randG
 
 def randomizing_d_v_one_d_e_zero(G):
+	# Given a hypergraph, return a randomized hypergraph with (d_v, d_e) = (1, 0).
+
 	stublist = []
 	for v in G.V:
 		k = len(G.elist[v])
@@ -47,6 +51,7 @@ def randomizing_d_v_one_d_e_zero(G):
 	return randG
 
 def randomizing_d_v_two_d_e_zero(G):
+	# Given a hypergraph, return a randomized hypergraph with (d_v, d_e) = (2, 0).
 
 	randG = hypergraph.HyperGraph()
 	
@@ -59,6 +64,7 @@ def randomizing_d_v_two_d_e_zero(G):
 	return randG
 
 def randomizing_d_v_two_five_d_e_zero(G):
+	# Given a hypergraph, return a randomized hypergraph with (d_v, d_e) = (2.5, 0).
 
 	randG = hypergraph.HyperGraph()
 
@@ -71,6 +77,8 @@ def randomizing_d_v_two_five_d_e_zero(G):
 	return randG
 
 def randomizing_d_v_zero_d_e_one(G):
+	# Given a hypergraph, return a randomized hypergraph with (d_v, d_e) = (0, 1).
+
 	stublist = []
 	for e_i in range(0, len(G.E)):
 		s = len(G.E[e_i])
@@ -95,6 +103,8 @@ def randomizing_d_v_zero_d_e_one(G):
 	return randG
 
 def randomizing_d_v_one_d_e_one(G):
+	# Given a hypergraph, return a randomized hypergraph with (d_v, d_e) = (1, 1).
+
 	node_stublist = []
 	for v in G.V:
 		k = len(G.elist[v])
@@ -127,6 +137,7 @@ def randomizing_d_v_one_d_e_one(G):
 	return randG
 
 def randomizing_d_v_two_d_e_one(G):
+	# Given a hypergraph, return a randomized hypergraph with (d_v, d_e) = (2, 1).
 
 	randG = hypergraph.HyperGraph()
 
@@ -139,6 +150,7 @@ def randomizing_d_v_two_d_e_one(G):
 	return randG
 
 def randomizing_d_v_two_five_d_e_one(G):
+	# Given a hypergraph, return a randomized hypergraph with (d_v, d_e) = (2.5, 1).
 
 	randG = hypergraph.HyperGraph()
 
