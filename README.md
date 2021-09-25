@@ -120,6 +120,13 @@ example-hypergraph_0_1_3_hyperedges.txt
 We introduce how to use the HyperGraph class. 
 We can perform basic analyses and manipulations of a hypergraph using this class and its functions.
 
+The HyperGraph class contains two public variables: 
+
+- V: A list of nodes. 
+- E: A list of hyperedges. 
+
+In the following, we introduce functions for the HyperGraph class.
+
 ### hypergraph.HyperGraph.construct_hypergraph(V, E)
 
 Construct a hypergraph from a set of nodes *V* and a set of hyperedges *E*.
@@ -136,23 +143,9 @@ Then, we construct *G* as follows:
 	>>> V = [0, 1, 2, 3, 4]
 	>>> E = [[0, 1], [1, 2], [0, 1, 2], [0, 1, 2, 3], [0, 1, 2, 3, 4]]
 	>>> G.construct_hypergraph(V, E)
-
-### hypergraph.HyperGraph.nodes()
-
-Return a set of nodes of a given hypergraph.
-
-For example,
-
-	>>> G.nodes()
+	>>> G.V
 	[0, 1, 2, 3, 4]
-
-### hypergraph.HyperGraph.hyperedges()
-
-Return a set of hyperedges of a given hypergraph.
-
-For example,
-
-	>>> G.hyperedges()
+	>>> G.E
 	[[0, 1], [1, 2], [0, 1, 2], [0, 1, 2, 3], [0, 1, 2, 3, 4]]
 
 ### hypergraph.HyperGraph.read_hypergraph(hypergraph_name)
@@ -161,7 +154,6 @@ Read a hypergraph named `hypergraph_name` from the corresponding files located i
 
 For example, if we want to read a hypergraph named `example-hypergraph`, we should run the following commands:
 
-	>>> import hypergraph
 	>>> hypergraph_name = "example-hypergraph"
 	>>> G = hypergraph.HyperGraph()
 	>>> G.read_hypergraph(hypergraph_name)
@@ -176,7 +168,7 @@ Add node *v* to hyperedge *E[e_i]*.
 For example, the following command adds node 3 to the hyperedge E[0] in hypergraph G:
 
 	>>> G.add_node_to_hyperedge(3, 0)
-	>>> G.hyperedges()
+	>>> G.E
 	[[0, 1, 3], [1, 2], [0, 1, 2], [0, 1, 2, 3], [0, 1, 2, 3, 4]]
 
 ### hypergraph.HyperGraph.remove_node_from_hyperedge(v, e_i)
@@ -186,7 +178,7 @@ Remove node *v* from hyperedge *E[e_i]*.
 For example, the following command removes node 3 to the hyperedge E[0] in hypergraph G:
 
 	>>> G.remove_node_from_hyperedge(3, 0)
-	>>> G.hyperedges()
+	>>> G.E
 	[[0, 1], [1, 2], [0, 1, 2], [0, 1, 2, 3], [0, 1, 2, 3, 4]]
 
 ### hypergraph.HyperGraph.node_degree()
@@ -246,8 +238,8 @@ Example:
 	>>> G.degree_dependent_node_redundancy_coefficient()
 	{1: 0.0, 2: 1.0, 4: 1.0, 5: 0.9}
 	>>> ddnrc = G.degree_dependent_node_redundancy_coefficient()
-	>>> ddnrc[1]
-	0.0
+	>>> ddnrc[5]
+	0.9
 
 Note that the key in the dictionary is the node's degree.
 
@@ -260,8 +252,8 @@ Example:
 	>>> G.hyperedge_size()
 	{0: 2, 1: 2, 2: 3, 3: 4, 4: 5}
 	>>> hs = G.hyperedge_size()
-	>>> hs[0]
-	2
+	>>> hs[2]
+	3
 
 Note that the key in the dictionary is the index of the hyperedge in list E.
 For example, hs[0] is the size of hyperedge G.E[0].
