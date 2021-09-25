@@ -15,6 +15,19 @@ class HyperGraph():
         self.E = []
         self.elist = {}
 
+    def construct_hypergraph(self, V, E):
+        # Construct a hypergraph from a set of nodes V and a set of hyperedges E.
+
+        self.V = list(V)
+        self.E = list(E)
+        self.elist = {v: [] for v in self.V}
+
+        for i in range(0, len(E)):
+            for v in E[i]:
+                self.elist[v].append(i)
+
+        return
+
     def read_hypergraph(self, hypergraph_name):
         # Read hypergraph named hypergraph_name.
         # The corresponding files to read must be in the folder ./hyper-dk-series/data/.
@@ -55,6 +68,14 @@ class HyperGraph():
         print("Number of hyperedges:", len(self.E))
 
         return
+
+    def nodes(self):
+
+        return self.V
+
+    def hyperedges(self):
+
+        return self.E
 
     def add_node_to_hyperedge(self, v, e_i):
         # Add node v to hyperedge E[e_i]
