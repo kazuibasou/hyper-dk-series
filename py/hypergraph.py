@@ -69,14 +69,6 @@ class HyperGraph():
 
         return
 
-    def nodes(self):
-
-        return self.V
-
-    def hyperedges(self):
-
-        return self.E
-
     def add_node_to_hyperedge(self, v, e_i):
         # Add node v to hyperedge E[e_i]
 
