@@ -341,7 +341,7 @@ The *n* th (*n*=1, ..., *num_gen*) randomized hypergraph, i.e., *hypergraph*\_*d
 
 ## Reference
 
-[1] Kazuki Nakajima, Kazuyuki Shudo, Naoki Masuda. Randomizing hypergraphs preserving degree correlation and local clustering, June 2021. [<a href="https://arxiv.org/abs/2106.12162">arXiv</a>]
+[1] Kazuki Nakajima, Kazuyuki Shudo, Naoki Masuda. Randomizing Hypergraphs Preserving Degree Correlation and Local Clustering. December 2021. [<a href="https://doi.org/10.1109/TNSE.2021.3133380">paper</a>]
 
 ## License
 
@@ -351,4 +351,4 @@ This source code is released under the MIT License, see LICENSE.txt.
 - Kazuki Nakajima (https://kazuibasou.github.io/index_en.html)
 - nakajima.k.an[at]m.titech.ac.jp
 
-(Last update: 2021/09/25)
+(Last update: 2022/08/13)
