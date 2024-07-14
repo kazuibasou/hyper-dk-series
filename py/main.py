@@ -41,48 +41,4 @@ if __name__ == "__main__":
 	G.read_hypergraph(hypergraph_name)
 	print()
 
-	if d_v == "0" and d_e == "0":
-		for k in range(1, num_gen+1):
-			print("Started "+ str(k) + "-th randomization with (d_v, d_e) = (" + d_v + ", " + d_e + ").\n")
-			randG = hyper_dk_series.randomizing_d_v_zero_d_e_zero(G)
-			write_hypergraph(hypergraph_name, d_v, d_e, k, randG)
-	elif d_v == "1" and d_e == "0":
-		for k in range(1, num_gen+1):
-			print("Started "+ str(k) + "-th randomization with (d_v, d_e) = (" + d_v + ", " + d_e + ").\n")
-			randG = hyper_dk_series.randomizing_d_v_one_d_e_zero(G)
-			write_hypergraph(hypergraph_name, d_v, d_e, k, randG)
-	elif d_v == "2" and d_e == "0":
-		for k in range(1, num_gen+1):
-			print("Started "+ str(k) + "-th randomization with (d_v, d_e) = (" + d_v + ", " + d_e + ").\n")
-			randG = hyper_dk_series.randomizing_d_v_two_d_e_zero(G)
-			write_hypergraph(hypergraph_name, d_v, d_e, k, randG)
-	elif d_v == "2.5" and d_e == "0":
-		for k in range(1, num_gen+1):
-			print("Started "+ str(k) + "-th randomization with (d_v, d_e) = (" + d_v + ", " + d_e + ").\n")
-			randG = hyper_dk_series.randomizing_d_v_two_five_d_e_zero(G)
-			write_hypergraph(hypergraph_name, d_v, d_e, k, randG)
-	elif d_v == "0" and d_e == "1":
-		for k in range(1, num_gen+1):
-			print("Started "+ str(k) + "-th randomization with (d_v, d_e) = (" + d_v + ", " + d_e + ").\n")
-			randG = hyper_dk_series.randomizing_d_v_zero_d_e_one(G)
-			write_hypergraph(hypergraph_name, d_v, d_e, k, randG)
-	elif d_v == "1" and d_e == "1":
-		for k in range(1, num_gen+1):
-			print("Started "+ str(k) + "-th randomization with (d_v, d_e) = (" + d_v + ", " + d_e + ").\n")
-			randG = hyper_dk_series.randomizing_d_v_one_d_e_one(G)
-			write_hypergraph(hypergraph_name, d_v, d_e, k, randG)
-	elif d_v == "2" and d_e == "1":
-		for k in range(1, num_gen+1):
-			print("Started "+ str(k) + "-th randomization with (d_v, d_e) = (" + d_v + ", " + d_e + ").\n")
-			randG = hyper_dk_series.randomizing_d_v_two_d_e_one(G)
-			write_hypergraph(hypergraph_name, d_v, d_e, k, randG)
-	elif d_v == "2.5" and d_e == "1":
-		for k in range(1, num_gen+1):
-			print("Started "+ str(k) + "-th randomization with (d_v, d_e) = (" + d_v + ", " + d_e + ").\n")
-			randG = hyper_dk_series.randomizing_d_v_two_five_d_e_one(G)
-			write_hypergraph(hypergraph_name, d_v, d_e, k, randG)
-	else:
-		print("Error: Given pair (d_v, d_e) is not defined.\n")
-		print("The pair (d_v, d_e) should be (0, 0), (1, 0), (2, 0), (2.5, 0), (0, 1), (1, 1), (2, 1), or (2.5, 1).\n")
-		exit()
-
+	hyper_dk_series.run(G, d_v, d_e)
