@@ -37,4 +37,6 @@
 ./cpp/.DS_Store
 rand_hypergraph/
 py/__pycache__/
+py/.ipynb_checkpoints/
+py/.DS_Store
 
