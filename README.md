@@ -1,4 +1,22 @@
-# Hyper dK-series
+<h1 align="center">
+Hyper dK-series
+</h1>
+
+<p align="center">
+<i>A family of reference models for hypergraphs</i>
+</p>
+
+<p align="center">
+<a href="https://github.com/kazuibasou/hyper-dk-series/blob/main/LICENSE" target="_blank">
+<img alt="License: MIT" src="https://img.shields.io/github/license/kazuibasou/hyperneo">
+</a>
+
+<a href="https://arxiv.org/abs/2106.12162" target="_blank">
+<img alt="ARXIV: 2106.12162" src="https://img.shields.io/badge/arXiv-2106.12162-red.svg">
+</a>
+
+</p>
+
 Hyper dK-series is a family of randomization methods for hypergraphs. 
 The hyper dK-series produces randomized hypergraphs that preserve up to the individual node’s degree, node’s degree correlation, node’s redundancy coefficient, and/or the hyperedge’s size of the given hypergraph, depending on the parameter values *d<sub>v</sub>* = 0, 1, 2, or 2.5 and *d<sub>e</sub>* = 0 or 1.
 
