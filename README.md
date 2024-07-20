@@ -1,5 +1,6 @@
 <h1 align="center">
-Hyper dK-series
+Hyper dK-series <br/>  
+<i>Randomizing Hypergraphs Preserving Degree Correlation and Local Clustering</i>
 </h1>
 
 <p align="center">
