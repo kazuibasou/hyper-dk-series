@@ -469,9 +469,9 @@ def read_hypergraph(hypergraph_name):
     # Read hypergraph named hypergraph_name.
     # The corresponding files to read must be in the folder ./hyper-dk-series/data/.
 
-    f1_path = "../../data/" + str(hypergraph_name) + "_nverts.txt"
+    f1_path = "../data/" + str(hypergraph_name) + "_nverts.txt"
     f1 = open(f1_path, 'r')
-    f2_path = "../../data/" + str(hypergraph_name) + "_hyperedges.txt"
+    f2_path = "../data/" + str(hypergraph_name) + "_hyperedges.txt"
     f2 = open(f2_path, 'r')
 
     lines1 = f1.readlines()
@@ -499,7 +499,7 @@ def read_hypergraph(hypergraph_name):
     return H
 
 def write_hypergraph(H: HyperGraph, hypergraph_name):
-    f1_path = "../../data/" + str(hypergraph_name) + "_nverts.txt"
+    f1_path = "../data/" + str(hypergraph_name) + "_nverts.txt"
     f1 = open(f1_path, 'w')
 
     for e in H.E:
@@ -507,7 +507,7 @@ def write_hypergraph(H: HyperGraph, hypergraph_name):
 
     f1.close()
 
-    f2_path = "../../data/" + str(hypergraph_name) + "_hyperedges.txt"
+    f2_path = "../data/" + str(hypergraph_name) + "_hyperedges.txt"
     f2 = open(f2_path, 'w')
 
     for e in H.E:

@@ -893,7 +893,7 @@ def get_L1_distance(H: hypergraph.HyperGraph, randH: hypergraph.HyperGraph):
 def write_randomized_hypergraph(randH, hypergraph_name, d_v, d_e):
 	# Write files for a randomized hypergraph named randH.
 
-	f1_path = "../outputs/" + str(hypergraph_name) + "_" + str(d_v) + "_" + str(d_e) + "_nverts.txt"
+	f1_path = "outputs/" + str(hypergraph_name) + "_" + str(d_v) + "_" + str(d_e) + "_nverts.txt"
 	f1 = open(f1_path, 'w')
 
 	for e in randH.E:
@@ -901,7 +901,7 @@ def write_randomized_hypergraph(randH, hypergraph_name, d_v, d_e):
 
 	f1.close()
 
-	f2_path = "../outputs/" + str(hypergraph_name) + "_" + str(d_v) + "_" + str(d_e) + "_hyperedges.txt"
+	f2_path = "outputs/" + str(hypergraph_name) + "_" + str(d_v) + "_" + str(d_e) + "_hyperedges.txt"
 	f2 = open(f2_path, 'w')
 
 	for e in randH.E:
