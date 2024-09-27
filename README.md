@@ -102,7 +102,7 @@ example-hypergraph_hyperedges.txt
 
 ### Generating randomized hypergraphs
 
-Please see the notebooks in the folder `hyper-dk-series/py/notebooks` for instructions on using the hyper dk-series in Python.
+Please see the notebooks `1_basics.ipynb` and `2_randomization.ipynb` in the folder `hyper-dk-series/py/` for instructions on using the hyper dk-series in Python.
 
 # C++
 
