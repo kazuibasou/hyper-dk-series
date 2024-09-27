@@ -5,6 +5,7 @@ import math
 from collections import Counter
 from numba import jit, types
 from collections import defaultdict
+import os
 
 def _randomizing_d_v_zero_d_e_zero(H):
 	# Given a hypergraph, return a randomized hypergraph with (d_v, d_e) = (0, 0).
@@ -892,6 +893,9 @@ def get_L1_distance(H: hypergraph.HyperGraph, randH: hypergraph.HyperGraph):
 
 def write_randomized_hypergraph(randH, hypergraph_name, d_v, d_e):
 	# Write files for a randomized hypergraph named randH.
+
+	if not os.path.exists("./outputs/"):
+		os.makedirs("./outputs/")
 
 	f1_path = "outputs/" + str(hypergraph_name) + "_" + str(d_v) + "_" + str(d_e) + "_nverts.txt"
 	f1 = open(f1_path, 'w')
