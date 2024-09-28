@@ -65,7 +65,7 @@ The *i* th line of this file represents the number of nodes contained in the *i*
 #### *hypergraph*\_hyperedges.txt
 This file contains a contiguous list of indices of the nodes comprising the hyperedges, where the ordering of the hyperedges is the same as in *hypergraph*\_nverts.txt.
 
-Note that our code successfully works as long as each node's index is an integer. There is no need for the node index to start at 0 or to increment by 1.
+**Note that our code successfully works as long as the node index starts at 0 and increments by 1.**
 
 #### Example
 Let's consider a hypergraph, named `example-hypergraph`, that consists of a set of nodes *V* = {0, 1, 2, 3, 4} and a set of hyperedges *E* = {{0, 1}, {1, 2}, {0, 1, 2}, {0, 1, 2, 3}, {0, 1, 2, 3, 4}}. 
@@ -181,15 +181,15 @@ To generate three randomized hypergraphs with (*d<sub>v</sub>*, *d<sub>e</sub>*)
 ### Output files
 The *n* th (*n*=1, ..., *num_gen*) randomized hypergraph, i.e., *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt will be created in the folder `hyper-dk-series/rand_hypergraph/`.
 
-## Reference
+# Reference
 
 [1] Kazuki Nakajima, Kazuyuki Shudo, Naoki Masuda. Randomizing Hypergraphs Preserving Degree Correlation and Local Clustering. December 2021. [<a href="https://doi.org/10.1109/TNSE.2021.3133380">paper</a>]
 
-## License
+# License
 
 This source code is released under the MIT License, see LICENSE.txt.
 
-## Contact
+# Contact
 - Kazuki Nakajima (https://kazuibasou.github.io/)
 
 (Last update: 2024/09/28)
