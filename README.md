@@ -38,10 +38,11 @@ We have confirmed that our code works in the following environments.
 
 ### Python and its libraries
 
-- Python 3.9
-- numpy 1.26.4
+- Python 3.10.15
+- numpy 2.0.2
 - numba 0.60.0
-- matplotlib 3.8.0
+- matplotlib 3.9.2
+- hypernetx 2.3.0
 
 ### OS
 - macOS 14.4
