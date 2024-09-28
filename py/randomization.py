@@ -916,4 +916,4 @@ def write_randomized_hypergraph(randH, hypergraph_name, d_v, d_e):
 
 	#print("Wrote the " + str(k) + "-th hypergraph randomized with (" + d_v + ", " + d_e + ").\n")
 
-	return 0
+	return
