@@ -3,6 +3,7 @@ from collections import Counter
 from collections import deque
 from collections import defaultdict
 import warnings
+import hypernetx as hnx
 
 class HyperGraph():
     N = 0
@@ -464,6 +465,16 @@ class HyperGraph():
         print()
 
         return
+
+    def convert_to_hnx_hypergraph(self):
+        B = np.zeros((self.N, self.M), dtype=int)
+        for m in range(0, self.M):
+            for v in self.E[m]:
+                B[v][m] += 1
+
+        H_hnx = hnx.Hypergraph.from_incidence_matrix(B)
+
+        return H_hnx
 
 def read_hypergraph(hypergraph_name):
     # Read hypergraph named hypergraph_name.
