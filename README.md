@@ -181,13 +181,6 @@ To generate three randomized hypergraphs with (*d<sub>v</sub>*, *d<sub>e</sub>*)
 ### Output files
 The *n* th (*n*=1, ..., *num_gen*) randomized hypergraph, i.e., *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt will be created in the folder `hyper-dk-series/rand_hypergraph/`.
 
-# Benchmark
-
-||Data||||
-|(*dv*, *de*)|drug|Enron|primary-school|high-school|
-|:------|:-----:|------:|:-----:|------:|
-
-
 # Reference
 
 [1] Kazuki Nakajima, Kazuyuki Shudo, Naoki Masuda. Randomizing Hypergraphs Preserving Degree Correlation and Local Clustering. December 2021. [<a href="https://doi.org/10.1109/TNSE.2021.3133380">paper</a>]
