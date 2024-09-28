@@ -183,9 +183,10 @@ The *n* th (*n*=1, ..., *num_gen*) randomized hypergraph, i.e., *hypergraph*\_*d
 
 # Benchmark
 
-|>            |>   |Data |              |           |
+||Data||||
 |(*dv*, *de*)|drug|Enron|primary-school|high-school|
 |:------|:-----:|------:|:-----:|------:|
+
 
 # Reference
 
