@@ -28,7 +28,7 @@ The C++ code is much faster than the Python code.
 
 # What's new
 
-- 2024/09/28: Implemented Python code with [numba](https://numba.pydata.org/) for the hyper dk-series, which considerably reduces generation time for the parameter *d<sub>v</sub>* = 2 and 2.5.
+- 2024/09/28: Implemented Python code with [numba](https://numba.pydata.org/) for the hyper dk-series, which is 20-30 times faster than the previous version for the parameter *d<sub>v</sub>* = 2 and 2.5.
 
 # Python
 
@@ -110,7 +110,7 @@ Please see the notebooks `1_basics.ipynb` and `2_randomization.ipynb` in the fol
 I measured the running time in seconds for generating a single randomized instance using the hyper dK-series implemented in Python with numba.
 I used the same four empirical hypergraph data sets (i.e., `drug`, `Enron`, `primary-school`, and `high-school`) as Ref. [1].
 
-Yes, the hyper dK-series with *d<sub>v</sub>*=2 or 2.5 takes some time because of many rewiring attempts, but the current version is *20-30 times faster* than the previous version without numba.
+Yes, the hyper dK-series with *d<sub>v</sub>*=2 or 2.5 takes some time because of many rewiring attempts, but **the current version is 20-30 times faster than the previous version without numba.**
 
 | (*d<sub>v</sub>*, *d<sub>e</sub>*) | drug | Enron | primary-school | high-school |
 | ---- | ---- | ---- | ---- | ---- |
