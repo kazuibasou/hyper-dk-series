@@ -105,6 +105,24 @@ example-hypergraph_hyperedges.txt
 
 Please see the notebooks `1_basics.ipynb` and `2_randomization.ipynb` in the folder `hyper-dk-series/py/` for instructions on using the hyper dk-series in Python.
 
+## Benchmark
+
+I measured the running time for generating a single randomized instance using the hyper dK-series implemented in Python with numba.
+I used the same four empirical hypergraph data sets as Ref. [1].
+
+| (*d<sub>v</sub>*, *d<sub>e</sub>*) | drug | Enron | primary-school | high-school |
+| ---- | ---- | ---- | ---- | ---- |
+| (0, 0) | 0.02 | 0.008 | 0.06 | 0.05 |
+| (1, 0) | 0.008 | 0.005 | 0.03 | 0.02 |
+| (2, 0) | 20.2 | 9.2 | 59.2 | 28.5 |
+| (2.5, 0) | 114 | 48.3 | 757 | 217 |
+| (0, 1) | 0.02 | 0.008 | 0.16 | 0.05 |
+| (1, 1) | 0.008 | 0.005 | 0.03 | 0.02 |
+| (2, 1) | 24.0 | 8.2 | 45.0 | 20.4 |
+| (2.5, 1) | 111 | 46.3 | 631 | 186 |
+
+Table: Generation time in seconds for the Python code.
+
 # C++
 
 ## Requirements

@@ -315,56 +315,96 @@ int main(int argc,char *argv[]){
 	if(d_v == "0" && d_e == "0"){
 		for(int k=1; k<=num_gen; ++k){
 			printf("Started %d-th generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n\n", k, d_v.c_str(), d_e.c_str());
+			std::chrono::system_clock::time_point  start, end;
+			start = std::chrono::system_clock::now();
 			HyperGraph rand_G = randomizing_d_v_zero_d_e_zero(G);
+			end = std::chrono::system_clock::now();
+			double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
+			printf("Generation time: %lf [milliseconds].\n", elapsed);
 			write_hypergraph(graphname, d_v, d_e, k, rand_G);
 		}
 	}
 	else if(d_v == "1" && d_e == "0"){
 		for(int k=1; k<=num_gen; ++k){
 			printf("Started %d-th generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n\n", k, d_v.c_str(), d_e.c_str());
+			std::chrono::system_clock::time_point  start, end;
+			start = std::chrono::system_clock::now();
 			HyperGraph rand_G = randomizing_d_v_one_d_e_zero(G);
+			end = std::chrono::system_clock::now();
+			double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
+			printf("Generation time: %lf [milliseconds].\n", elapsed);
 			write_hypergraph(graphname, d_v, d_e, k, rand_G);
 		}
 	}
 	else if(d_v == "2" && d_e == "0"){
 		for(int k=1; k<=num_gen; ++k){
 			printf("Started %d-th generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n\n", k, d_v.c_str(), d_e.c_str());
+			std::chrono::system_clock::time_point  start, end;
+			start = std::chrono::system_clock::now();
 			HyperGraph rand_G = randomizing_d_v_two_d_e_zero(G);
+			end = std::chrono::system_clock::now();
+			double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
+			printf("Generation time: %lf [milliseconds].\n", elapsed);
 			write_hypergraph(graphname, d_v, d_e, k, rand_G);
 		}
 	}
 	else if(d_v == "2.5" && d_e == "0"){
 		for(int k=1; k<=num_gen; ++k){
 			printf("Started %d-th generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n\n", k, d_v.c_str(), d_e.c_str());
+			std::chrono::system_clock::time_point  start, end;
+			start = std::chrono::system_clock::now();
 			HyperGraph rand_G = randomizing_d_v_two_five_d_e_zero(G);
+			end = std::chrono::system_clock::now();
+			double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
+			printf("Generation time: %lf [milliseconds].\n", elapsed);
 			write_hypergraph(graphname, d_v, d_e, k, rand_G);
 		}
 	}
 	else if(d_v == "0" && d_e == "1"){
 		for(int k=1; k<=num_gen; ++k){
 			printf("Started %d-th generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n\n", k, d_v.c_str(), d_e.c_str());
+			std::chrono::system_clock::time_point  start, end;
+			start = std::chrono::system_clock::now();
 			HyperGraph rand_G = randomizing_d_v_zero_d_e_one(G);
+			end = std::chrono::system_clock::now();
+			double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
+			printf("Generation time: %lf [milliseconds].\n", elapsed);
 			write_hypergraph(graphname, d_v, d_e, k, rand_G);
 		}
 	}
 	else if(d_v == "1" && d_e == "1"){
 		for(int k=1; k<=num_gen; ++k){
 			printf("Started %d-th generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n\n", k, d_v.c_str(), d_e.c_str());
+			std::chrono::system_clock::time_point  start, end;
+			start = std::chrono::system_clock::now();
 			HyperGraph rand_G = randomizing_d_v_one_d_e_one(G);
+			end = std::chrono::system_clock::now();
+			double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
+			printf("Generation time: %lf [milliseconds].\n", elapsed);
 			write_hypergraph(graphname, d_v, d_e, k, rand_G);
 		}
 	}
 	else if(d_v == "2" && d_e == "1"){
 		for(int k=1; k<=num_gen; ++k){
 			printf("Started %d-th generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n\n", k, d_v.c_str(), d_e.c_str());
+			std::chrono::system_clock::time_point  start, end;
+			start = std::chrono::system_clock::now();
 			HyperGraph rand_G = randomizing_d_v_two_d_e_one(G);
+			end = std::chrono::system_clock::now();
+			double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
+			printf("Generation time: %lf [milliseconds].\n", elapsed);
 			write_hypergraph(graphname, d_v, d_e, k, rand_G);
 		}
 	}
 	else if(d_v == "2.5" && d_e == "1"){
 		for(int k=1; k<=num_gen; ++k){
 			printf("Started %d-th generation of a randomized hypergraph with (d_v, d_e) = (%s, %s).\n\n", k, d_v.c_str(), d_e.c_str());
+			std::chrono::system_clock::time_point  start, end;
+			start = std::chrono::system_clock::now();
 			HyperGraph rand_G = randomizing_d_v_two_five_d_e_one(G);
+			end = std::chrono::system_clock::now();
+			double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
+			printf("Generation time: %lf [milliseconds].\n", elapsed);
 			write_hypergraph(graphname, d_v, d_e, k, rand_G);
 		}
 	}
