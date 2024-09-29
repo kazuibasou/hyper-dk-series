@@ -111,7 +111,7 @@ I measured the running time in seconds for generating a single randomized instan
 I used the same four empirical hypergraph data sets as Ref. [1].
 Yes, the hyper dK-series with d_v=2 or 2.5 takes some time because of many rewiring attempts, but the current version is *several tens of times faster* than the previous version without numba.
 
-| | Data | | | |
+| | Data ||||
 | (*d<sub>v</sub>*, *d<sub>e</sub>*) | drug | Enron | primary-school | high-school |
 | ---- | ---- | ---- | ---- | ---- |
 | (0, 0) | 0.02 | 0.008 | 0.06 | 0.05 |
