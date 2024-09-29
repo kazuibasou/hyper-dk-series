@@ -24,7 +24,6 @@ In general, when *d<sub>v</sub>* = 0 or 1, the code runs fast. When *d<sub>v</su
 
 We provide code for the hyper dK-series in Python and C++.
 The python code is easier to use. 
-The C++ code is much faster than the Python code.
 
 # What's new
 
