@@ -298,10 +298,7 @@ def _targeting_rewiring_d_v_two(H_E_size: np.ndarray, H_jnt_node_deg: np.ndarray
 						  - float(randH_jnt_node_deg[k][l] + jnt_node_deg_to_add[k][l]) / randH_sum_jnt_node_deg)
 			y = math.fabs(float(H_jnt_node_deg[k][l]) / H_sum_jnt_node_deg
 						  - float(randH_jnt_node_deg[k][l]) / randH_sum_jnt_node_deg)
-			if x == y:
-				rewired_dist += x - y
-			else:
-				rewired_dist += 2 * (x - y)
+			rewired_dist += x - y
 
 		delta_dist = rewired_dist - dist
 
