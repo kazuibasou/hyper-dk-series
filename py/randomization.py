@@ -6,6 +6,7 @@ from collections import Counter
 from numba import jit, types
 from collections import defaultdict
 import os
+from multiprocessing import Pool
 
 def _randomizing_d_v_zero_d_e_zero(H):
     # Given a hypergraph, return a randomized hypergraph with (d_v, d_e) = (0, 0).
@@ -955,6 +956,77 @@ def hyper_dk(H: hypergraph.HyperGraph, d_v: str, d_e: str):
         exit()
 
     return randH
+
+
+def _hyper_dk_single_process(H: hypergraph.HyperGraph, d_v: str, d_e: str, num_gen: int):
+    randH_lst = []
+    if d_v == "0" and d_e == "0":
+        for i in range(0, num_gen):
+            randH = _randomizing_d_v_zero_d_e_zero(H)
+            randH_lst.append(randH)
+    elif d_v == "1" and d_e == "0":
+        for i in range(0, num_gen):
+            randH = _randomizing_d_v_one_d_e_zero(H)
+            randH_lst.append(randH)
+    elif d_v == "2" and d_e == "0":
+        for i in range(0, num_gen):
+            randH = _randomizing_d_v_two_d_e_zero(H)
+            randH_lst.append(randH)
+    elif d_v == "2.5" and d_e == "0":
+        for i in range(0, num_gen):
+            randH = _randomizing_d_v_two_five_d_e_zero(H)
+            randH_lst.append(randH)
+    elif d_v == "0" and d_e == "1":
+        for i in range(0, num_gen):
+            randH = _randomizing_d_v_zero_d_e_one(H)
+            randH_lst.append(randH)
+    elif d_v == "1" and d_e == "1":
+        for i in range(0, num_gen):
+            randH = _randomizing_d_v_one_d_e_one(H)
+            randH_lst.append(randH)
+    elif d_v == "2" and d_e == "1":
+        for i in range(0, num_gen):
+            randH = _randomizing_d_v_two_d_e_one(H)
+            randH_lst.append(randH)
+    elif d_v == "2.5" and d_e == "1":
+        for i in range(0, num_gen):
+            randH = _randomizing_d_v_two_five_d_e_one(H)
+            randH_lst.append(randH)
+    else:
+        print("Error: Given pair (d_v, d_e) is not defined.\n")
+        print(
+            "The pair (d_v, d_e) must be (0, 0), (1, 0), (2, 0), (2.5, 0), (0, 1), (1, 1), (2, 1), or (2.5, 1).\n")
+        exit()
+
+    return randH_lst
+
+
+def _hyper_dk_single_process_wrapper(args):
+
+    return _hyper_dk_single_process(*args)
+
+
+def hyper_dk_parallel(H: hypergraph.HyperGraph, d_v: str, d_e: str, num_gen: int, num_processes=4):
+    if (d_v, d_e) not in {("0", "0"), ("1", "0"), ("2", "0"), ("2.5", "0"),
+                          ("0", "1"), ("1", "1"), ("2", "1"), ("2.5", "1")}:
+        print("Error: Given pair (d_v, d_e) is not defined.\n")
+        print("The pair (d_v, d_e) must be (0, 0), (1, 0), (2, 0), (2.5, 0), (0, 1), (1, 1), (2, 1), or (2.5, 1).\n")
+        return []
+
+    p = Pool(num_processes)
+    inputs = []
+    n = 0
+    for i in range(0, num_processes-1):
+        inputs.append((H, d_v, d_e, int(num_gen/num_processes)))
+        n += int(num_gen/num_processes)
+    inputs.append((H, d_v, d_e, num_gen - n))
+    randH_lst_ = p.map(_hyper_dk_single_process_wrapper, inputs)
+
+    randH_lst = []
+    for i in range(0, num_processes):
+        randH_lst += randH_lst_[i]
+
+    return randH_lst
 
 
 def B2K(H: hypergraph.HyperGraph):
