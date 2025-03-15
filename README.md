@@ -107,7 +107,7 @@ example-hypergraph_hyperedges.txt
 
 Please see the notebooks `1_basics.ipynb` and `2_randomization.ipynb` located in the folder `hyper-dk-series/py/` for instructions on using the hyper dk-series in Python.
 
-## Benchmark (2024/10)
+## Benchmark (October 2024)
 
 We measured the runtime (in seconds) for generating a single randomized instance using the hyper dK-series implemented in Python with Numba.  
 We used the same four empirical hypergraph datasets as in Ref. [1]: `drug`, `Enron`, `primary-school`, and `high-school`. 
@@ -127,6 +127,7 @@ While the hyper dK-series with *d<sub>v</sub>* = 2 or 2.5 requires more time due
 
 ## Application: Rich club detection
 
+We define a higher-order rich club in which the nodes with the largest degrees are densely interconnected by hyperedges. 
 Please see the notebook `3_rich_club.ipynb` located in the folder `hyper-dk-series/py/` for instructions on the detection of higher-order rich clubs in Python.
 Please also see Ref. [2] for details on the detection method.
 

@@ -42,4 +42,5 @@ py/.DS_Store
 outputs/
 data/nsf-grants_nverts.txt
 data/nsf-grants_hyperedges.txt
+.idea/
 
