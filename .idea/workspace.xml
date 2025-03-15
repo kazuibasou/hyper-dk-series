@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="799bb365-b7f9-4f50-b393-037227e29bb3" name="Changes" comment="" />
+    <list default="true" id="799bb365-b7f9-4f50-b393-037227e29bb3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/py/2_randomization.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/py/2_randomization.ipynb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,6 +69,7 @@
       <workItem from="1741868181283" duration="3007000" />
       <workItem from="1741871374813" duration="11555000" />
       <workItem from="1742009122762" duration="4056000" />
+      <workItem from="1742043032761" duration="1045000" />
     </task>
     <servers />
   </component>
