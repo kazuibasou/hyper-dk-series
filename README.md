@@ -112,7 +112,7 @@ Please see the notebooks `1_basics.ipynb` and `2_randomization.ipynb` located in
 We measured the runtime (in seconds) for generating a single randomized instance using the hyper dK-series implemented in Python with Numba.  
 We used the same four empirical hypergraph datasets as in Ref. [1]: `drug`, `Enron`, `primary-school`, and `high-school`. 
 
-While the hyper dK-series with *d<sub>v</sub>* = 2 or 2.5 requires more time due to frequent hyperedge rewiring attempts, **the current version is 20–30 times faster than the previous version, which did not use Numba.**
+While the hyper dK-series with *d<sub>v</sub>* = 2 or 2.5 requires more time due to frequent hyperedge rewiring attempts, **the current version is 20–30 times faster than the previous version, which did not employ Numba.**
 
 | (*d<sub>v</sub>*, *d<sub>e</sub>*) | drug | Enron | primary-school | high-school |
 | ---- | ---- | ---- | ---- | ---- |
