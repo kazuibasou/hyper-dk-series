@@ -220,4 +220,4 @@ This source code is released under the MIT License, see LICENSE.txt.
 # Contact
 - Kazuki Nakajima (https://kazuibasou.github.io/)
 
-(Last update: 2024/09/28)
+(Last update: March 2025)
