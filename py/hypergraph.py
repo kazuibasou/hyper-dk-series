@@ -433,12 +433,12 @@ class HyperGraph():
             k = int(len(self.elist[v]))
             node_degrees.add(k)
 
-        min_k, max_k = 1, max(node_degrees)
-        rcc = {k: 0 for k in range(min_k, max_k + 1)}
+        rcc = {k: 0 for k in node_degrees}
         for e in self.E:
             k = min([self.node_degree(v) for v in e])
             for k_ in range(1, k):
-                rcc[k_] += 1
+                if k_ in node_degrees:
+                    rcc[k_] += 1
 
         return rcc
 
@@ -475,6 +475,14 @@ class HyperGraph():
         H_hnx = hnx.Hypergraph.from_incidence_matrix(B)
 
         return H_hnx
+
+    def s_size_hyperedge_induced_hypergraph(self, s: int):
+
+        E_ = [e for e in self.E if len(e) == s]
+        H_ = HyperGraph()
+        H_.add_hyperedges_from(E_)
+
+        return H_
 
 def read_hypergraph(hypergraph_name):
     # Read hypergraph named hypergraph_name.
