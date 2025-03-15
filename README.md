@@ -66,9 +66,9 @@ The file format follows that of [Austin R. Benson's data sets](https://github.co
 The *i* th line of this file represents the number of nodes contained in the *i* th hyperedge.
 
 #### *hypergraph*\_hyperedges.txt
-This file contains a contiguous list of indices of the nodes comprising the hyperedges, where the ordering of the hyperedges is the same as in *hypergraph*\_nverts.txt.
+This file contains a contiguous list of indices of the nodes comprising the hyperedges, one node per line. The ordering of the hyperedges is the same as in *hypergraph*\_nverts.txt. See the following example.
 
-**Note that our code successfully works as long as the node index starts at 0 and increments by 1.**
+**Note that, in these two files, the node index has to start at 0 and be contiguous (i.e., 0, 1, 2, ...).**
 
 #### Example
 Let's consider a hypergraph, named `example-hypergraph`, that consists of a set of nodes *V* = {0, 1, 2, 3, 4} and a set of hyperedges *E* = {{0, 1}, {1, 2}, {0, 1, 2}, {0, 1, 2, 3}, {0, 1, 2, 3, 4}}. 
@@ -105,7 +105,7 @@ example-hypergraph_hyperedges.txt
 
 ### Generating randomized hypergraphs
 
-Please see the notebooks `1_basics.ipynb` and `2_randomization.ipynb` located in the folder `hyper-dk-series/py/` for instructions on using the hyper dk-series in Python.
+Please see the notebooks `1_basics.ipynb` [NM: I suggest embedding hyperlinks for this and the next one.] and `2_randomization.ipynb` located in the folder `hyper-dk-series/py/` for instructions on using the hyper dk-series in Python.
 
 ## Benchmark (October 2024)
 
@@ -128,7 +128,7 @@ While the hyper dK-series with *d<sub>v</sub>* = 2 or 2.5 requires more time due
 ## Application: Rich club detection
 
 We define a higher-order rich club in which the nodes with the largest degrees are densely interconnected by hyperedges. 
-Please see the notebook `3_rich_club.ipynb` located in the folder `hyper-dk-series/py/` for instructions on the detection of higher-order rich clubs in Python.
+Please see the notebook `3_rich_club.ipynb` [NM: Same here. embed a hyperlink?] located in the folder `hyper-dk-series/py/` for instructions on the detection of higher-order rich clubs in Python.
 Please also see Ref. [2] for details on the detection method.
 
 # C++
@@ -136,7 +136,7 @@ Please also see Ref. [2] for details on the detection method.
 ## Requirements
 Require gcc version 4.2.1 or later.
 
-We have confirmed that our code works in the following environments.
+We have confirmed that our code works in the following environment.
 
 - macOS 14.4
 
@@ -171,7 +171,7 @@ If you find a file `hyper_dk_series` in the folder `hyper-dk-series/cpp/bin/`, t
 
 We need to feed two files, *hypergraph*\_nverts.txt and *hypergraph*\_hyperedges.txt, where *hypergraph* indicates the name of the network and is arbitrary. 
 These two files should be placed in `hyper-dk-series/data/`.
-In each of the two files, each line contains one integer.
+In each of the two files, each line contains one integer. [NM: Amend the text around here as I did above (if you agree with my edit). A bigger comment is whether we need to repeat the same thing here? Just write e.g. See the Input files section for the Python code, and embedding a hyperlink to that section is enough?]
 The file format follows that of [Austin R. Benson's data sets](https://github.com/arbenson/ScHoLP-Data).
 
 #### *hypergraph*\_nverts.txt
@@ -213,6 +213,8 @@ The *n* th (*n*=1, ..., *num_gen*) randomized hypergraph, i.e., *hypergraph*\_*d
 [1] Kazuki Nakajima, Kazuyuki Shudo, Naoki Masuda. Randomizing Hypergraphs Preserving Degree Correlation and Local Clustering. *IEEE TNSE*. vol. 9, pp. 1139-1153 (2021). [<a href="https://doi.org/10.1109/TNSE.2021.3133380">paper</a>]
 
 [2] Kazuki Nakajima, Kazuyuki Shudo, Naoki Masuda. Higher-order rich-club phenomenon in collaborative research grant networks. *Scientometrics*. vol. 128, pp. 2429–2446 (2023). [<a href="https://doi.org/10.1007/s11192-022-04621-1">paper</a>]
+
+[NM: Move this section above to ask them to cite the respective paper(s) when they use the code? I usually do this (see my github repositories, mostly with other students/postdocs, or other people's. Also, when you cite the paper above by [1] or [2], I suggest embedding a hyperlink in each instance.]
 
 # License
 
