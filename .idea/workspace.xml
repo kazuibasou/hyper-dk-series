@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="799bb365-b7f9-4f50-b393-037227e29bb3" name="Changes" comment="" />
+    <list default="true" id="799bb365-b7f9-4f50-b393-037227e29bb3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/py/1_basics.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/py/1_basics.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/py/2_randomization.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/py/2_randomization.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/py/3_rich_club.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/py/3_rich_club.ipynb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,6 +72,10 @@
       <workItem from="1741871374813" duration="11555000" />
       <workItem from="1742009122762" duration="4056000" />
       <workItem from="1742043032761" duration="2532000" />
+      <workItem from="1742109749653" duration="19000" />
+      <workItem from="1742109803240" duration="53000" />
+      <workItem from="1742109869033" duration="38000" />
+      <workItem from="1742110570246" duration="840000" />
     </task>
     <servers />
   </component>
@@ -75,6 +84,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+          <url>notebook:///Users/knakajima/research/hyper-dk-series/py/3_rich_club.ipynb</url>
+          <line>42</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/hyper_dk_series$hypergraph.coverage" NAME="hypergraph Coverage Results" MODIFIED="1741869820567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
