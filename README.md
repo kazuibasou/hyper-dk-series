@@ -115,7 +115,7 @@ Please see the notebooks [1_basics.ipynb](https://github.com/kazuibasou/hyper-dk
 ## Benchmark (October 2024)
 
 We measured the runtime (in seconds) for generating a single randomized instance using the hyper dK-series implemented in Python with Numba.  
-We used the same four empirical hypergraph datasets as in Ref. [[K. Nakajima et al. *IEEE TNSE* (2021)]](https://doi.org/10.1109/TNSE.2021.3133380): `drug`, `Enron`, `primary-school`, and `high-school`. 
+We used the same four empirical hypergraph datasets as in [[K. Nakajima et al. *IEEE TNSE* (2021)]](https://doi.org/10.1109/TNSE.2021.3133380): `drug`, `Enron`, `primary-school`, and `high-school`. 
 
 While the hyper dK-series with *d<sub>v</sub>* = 2 or 2.5 requires more time due to frequent hyperedge rewiring attempts, **the current version is 20–30 times faster than the previous version, which did not employ Numba.**
 
@@ -134,7 +134,7 @@ While the hyper dK-series with *d<sub>v</sub>* = 2 or 2.5 requires more time due
 
 We define a higher-order rich club in which the nodes with the largest degrees are densely interconnected by hyperedges. 
 Please see the notebook [3_rich_club.ipynb](https://github.com/kazuibasou/hyper-dk-series/blob/main/py/3_rich_club.ipynb) located in the folder `hyper-dk-series/py/` for instructions on the detection of higher-order rich clubs in Python.
-Please also see Ref. [[K. Nakajima et al. *Scientometrics* (2023)]](https://doi.org/10.1007/s11192-022-04621-1) for details on the detection method.
+Please also see [[K. Nakajima et al. *Scientometrics* (2023)]](https://doi.org/10.1007/s11192-022-04621-1) for details on the detection method.
 
 # C++
 
