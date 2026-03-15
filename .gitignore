@@ -35,11 +35,12 @@
 .DS_Store
 ./data/.DS_Store
 ./cpp/.DS_Store
-rand_hypergraph/
+paper/
 py/__pycache__/
 py/.ipynb_checkpoints/
 py/.DS_Store
-outputs/
+outputs/*
+!outputs/.gitkeep
 data/nsf-grants_nverts.txt
 data/nsf-grants_hyperedges.txt
 .idea/

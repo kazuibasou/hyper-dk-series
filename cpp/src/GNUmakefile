@@ -4,7 +4,7 @@ CXXFLAGS = -std=c++11 -Wall -Wextra -O3
 main: mkdir hyper_dk_series clean
 
 mkdir:
-	mkdir -p ../../rand_hypergraph
+	mkdir -p ../../outputs
 	mkdir -p ../bin
 
 hyper_dk_series: hypergraph.o rewiring.o hyper_dk_series.o

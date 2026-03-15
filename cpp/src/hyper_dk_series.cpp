@@ -10,7 +10,7 @@
 int write_hypergraph(const char *graphname, const std::string d_v, const std::string d_e, 
 	const int k, HyperGraph rand_G){
 
-	const char *dir = "../../rand_hypergraph/";
+	const char *dir = "../../outputs/";
 
 	FILE *f1;
 	std::string f1path = std::string(dir) + graphname + "_" + d_v + "_" + d_e + "_" + std::to_string(k) + "_nverts.txt";
@@ -42,7 +42,7 @@ int write_hypergraph(const char *graphname, const std::string d_v, const std::st
 
 	fclose(f2);
 
-	printf("Wrote the %d-th hypergraph randomized with (d_v, d_e) = (%s, %s) at ./hyper_dk_series/rand_hypergraph/.\n\n", k, d_v.c_str(), d_e.c_str());
+	printf("Wrote the %d-th hypergraph randomized with (d_v, d_e) = (%s, %s) at ./outputs/.\n\n", k, d_v.c_str(), d_e.c_str());
 
 	return 0;
 }

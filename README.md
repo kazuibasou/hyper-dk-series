@@ -138,6 +138,8 @@ Please also see [[K. Nakajima et al. *Scientometrics* (2023)]](https://doi.org/1
 
 # C++
 
+The C++ code was used for the numerical experiments in [[K. Nakajima et al. *IEEE TNSE* (2021)]](https://doi.org/10.1109/TNSE.2021.3133380) and is provided for reproducibility. **For general use, we recommend the Python code**, which achieves comparable runtime to the C++ implementation.
+
 ## Requirements
 Require gcc version 4.2.1 or later.
 
@@ -166,7 +168,7 @@ This generates the following structure of the directory.
 	   └ src/
 	├ data/
 	├ py/
-	└ rand_hypergraph/
+	└ outputs/
 
 If you find a file `hyper_dk_series` in the folder `hyper-dk-series/cpp/bin/`, the build has been successfully completed.
 
@@ -210,7 +212,7 @@ To generate three randomized hypergraphs with (*d<sub>v</sub>*, *d<sub>e</sub>*)
 	./hyper_dk_series example-hypergraph 0 1 3
 
 ### Output files
-The *n* th (*n*=1, ..., *num_gen*) randomized hypergraph, i.e., *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt will be created in the folder `hyper-dk-series/rand_hypergraph/`.
+The *n* th (*n*=1, ..., *num_gen*) randomized hypergraph, i.e., *hypergraph*\_*dv*\_*de*\_*n*\_nverts.txt and *hypergraph*\_*dv*\_*de*\_*n*\_hyperedges.txt will be created in the folder `hyper-dk-series/outputs/`.
 
 # License
 
