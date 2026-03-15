@@ -220,5 +220,3 @@ This source code is released under the MIT License, see LICENSE.txt.
 
 # Contact
 - Kazuki Nakajima (https://kazuibasou.github.io/)
-
-(Last update: March 2025)
